@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Error — Pnyx')}"></head>
+<body>
+
+<header th:replace="~{fragments/layout :: header('')}"></header>
+
+<main class="main">
+    <div class="container container-narrow">
+        <div class="error-page">
+            <div class="error-code" th:text="${status}">500</div>
+            <div class="error-divider"></div>
+            <div class="error-type" th:text="${error}">Internal Server Error</div>
+            <div class="error-message" th:if="${message != null and !message.isEmpty()}" th:text="${message}">
+                An unexpected error occurred.
+            </div>
+            <div class="error-message" th:unless="${message != null and !message.isEmpty()}">
+                Something went wrong. The event stream remains intact — no data has been lost.
+            </div>
+            <a href="/" class="btn btn-primary">← Return to Dashboard</a>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+
+</body>
+</html>

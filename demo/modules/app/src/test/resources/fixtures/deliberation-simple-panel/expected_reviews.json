@@ -1,0 +1,4 @@
+{
+  "expectedRoles": ["legal-reviewer", "risk-reviewer"],
+  "requireFindings": true
+}

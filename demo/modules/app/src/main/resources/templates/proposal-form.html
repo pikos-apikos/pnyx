@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('New Proposal — Pnyx')}"></head>
+<body>
+
+<header th:replace="~{fragments/layout :: header('new')}"></header>
+
+<main class="main">
+    <div class="container container-narrow">
+
+        <a href="/" class="back-link">← Back to Dashboard</a>
+
+        <section class="hero" style="padding-top:0;text-align:left">
+            <h1>Submit a Proposal</h1>
+            <p>Craft a clear, actionable proposal for civic deliberation. Every submission becomes a permanent public artifact.</p>
+        </section>
+
+        <form action="/proposals" method="post" class="form-card">
+            <div class="form-group">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" id="title" name="title" class="form-input" required
+                       placeholder="e.g. Municipal fund for school energy upgrades"
+                       maxlength="200">
+                <div class="form-hint">A concise, descriptive title (max 200 characters)</div>
+            </div>
+
+            <div class="form-group">
+                <label for="problem" class="form-label">Problem</label>
+                <textarea id="problem" name="problem" class="form-textarea" required
+                          placeholder="Describe the problem this proposal addresses. What is the current situation, who is affected, and why does it matter?"
+                          maxlength="5000"></textarea>
+                <div class="form-hint">Clearly define the issue. Be specific about scope and impact.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="proposedAction" class="form-label">Proposed Action <span style="color:var(--color-text-muted);font-weight:400">(optional)</span></label>
+                <textarea id="proposedAction" name="proposedAction" class="form-textarea"
+                          placeholder="What should be done? Describe the action, who would implement it, and what success looks like."
+                          maxlength="5000"></textarea>
+                <div class="form-hint">Per the protocol, problems come before solutions. If you have a specific action in mind, describe it here.</div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-lg">Submit Proposal</button>
+                <a href="/" class="btn btn-ghost">Cancel</a>
+            </div>
+        </form>
+
+        <div class="alert alert-info" style="margin-top:1.5rem">
+            <span class="alert-title">About the Process</span>
+            After submission, your proposal will be validated, classified by AI, reviewed by a skill panel, and prepared for public deliberation. Every step is event-sourced and hash-chained for verifiability.
+        </div>
+
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+
+</body>
+</html>

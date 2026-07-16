@@ -1,0 +1,17 @@
+.claude/
+.idea/
+.gradle/
+build/
+*.iml
+.env
+.worktrees/
+.superpowers/
+.opencode/
+/logs/
+.DS_Store
+.junie/
+
+# E2E test artifacts
+demo/e2e/node_modules/
+demo/e2e/playwright-report/
+demo/e2e/test-results/
