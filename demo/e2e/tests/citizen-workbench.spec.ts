@@ -60,7 +60,7 @@ test.describe('Citizen UI and Protocol Workbench', () => {
     await expect(brief.getByRole('heading', { name: 'The issue' })).toBeVisible();
     await expect(brief.getByText('Children with mobility difficulties')).toBeVisible();
     await expect(page.locator('.detail-body')).toBeHidden();
-    await expect(brief.getByRole('link', { name: 'Protocol Workbench' })).toHaveAttribute(
+    await expect(brief.getByRole('link', { name: 'Protocol Workbench', exact: true })).toHaveAttribute(
       'href', `/workbench/proposals/${proposalId}`,
     );
   });
