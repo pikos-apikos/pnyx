@@ -25,19 +25,37 @@ Describe any effect on citizens, public artifacts, protocol behavior, APIs, oper
 - [ ] Capture, conflict-of-interest, and concentration-of-power risks considered
 - [ ] Migration, rollback, or compatibility considered where applicable
 
+## Licensing and provenance
+
+Classify new or materially changed work:
+
+- [ ] Software or executable specification — `EUPL-1.2`
+- [ ] Protocol documentation, narrative, or diagram — `CC-BY-SA-4.0`
+- [ ] Mixed contribution — separable licence scopes are identified
+- [ ] No new copyrightable material
+
+Additional checks:
+
+- [ ] Third-party material and dependencies are compatible and properly attributed
+- [ ] An explicit SPDX identifier or notice is included where the default scope is ambiguous
+- [ ] The change does not imply trademark permission, certification, or official endorsement
+- [ ] Commits include `Signed-off-by` lines required by DCO 1.1
+
+See `LICENSING.md`, `DCO`, and `TRADEMARKS.md`.
+
 ## AI assistance
 
 - [ ] No substantive AI assistance was used
 - [ ] AI assistance was used and is disclosed below
 
-Model/tool, affected work, human verification, and remaining uncertainty:
+Model/tool, affected work, human verification, external sources, and remaining uncertainty:
 
-## Documentation and provenance
+## Documentation and public memory
 
 - [ ] Relevant documentation is updated
 - [ ] Public-artifact or schema changes are explicit and versioned
 - [ ] Generated files are intentional
-- [ ] Commits include `Signed-off-by` lines required by the DCO
+- [ ] Material disagreement or rejected alternatives remain visible
 
 ## Review notes
 
