@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for the stable citizen/workbench surface routes.
  *
- * @see ../../../../../../../docs/80_Runtime/API_SPEC.md
+ * @see ../docs/80_Runtime/API_SPEC.md
  */
 class WorkbenchControllerTest {
 
