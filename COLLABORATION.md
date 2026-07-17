@@ -60,13 +60,15 @@ Closing an issue should include a reason. Rejected, duplicate, or deferred ideas
 1. Open a focused pull request, preferably as draft while the design is still moving.
 2. Link the issue or explain why no issue was needed.
 3. Complete the pull request template.
-4. Disclose substantive AI assistance and external sources.
-5. Request review from the relevant areas.
-6. Address findings or record why a suggestion was not adopted.
-7. Merge only when required checks and reviews pass.
-8. Update documentation and follow-up issues for accepted limitations.
+4. Identify whether new work is software/executable specification (`EUPL-1.2`), protocol/documentation (`CC-BY-SA-4.0`), or mixed.
+5. Verify third-party licence compatibility and preserve notices.
+6. Disclose substantive AI assistance and external sources.
+7. Request review from the relevant areas.
+8. Address findings or record why a suggestion was not adopted.
+9. Merge only when required checks and reviews pass.
+10. Update documentation and follow-up issues for accepted limitations.
 
-Prefer squash merging for a coherent public history unless preserving individual commits adds meaningful provenance.
+Prefer squash merging for a coherent public history unless preserving individual commits adds meaningful provenance. Squashing must preserve the required DCO sign-off in the final commit.
 
 ## Review roles
 
@@ -76,6 +78,7 @@ A change may need different reviewers:
 - **technical:** implementation correctness and architecture;
 - **security/privacy:** abuse, exposure, standing, provenance, and authorization;
 - **accessibility/UX:** whether real people can understand and complete the intended role;
+- **licensing/provenance:** contribution rights, third-party compatibility, attribution, and correct licence scope;
 - **operations:** deployment, monitoring, migration, and rollback;
 - **adversarial:** strongest case against the proposed change.
 
@@ -89,6 +92,17 @@ One person may cover more than one role, but high-impact changes should not rely
 - Challenge claims and designs, not motives or identities.
 - Preserve meaningful disagreement in the final rationale.
 - Do not use review volume, automation, or model-generated comments to exhaust contributors.
+
+## Licensing and public commons
+
+The multi-license boundary is part of the project architecture, not administrative boilerplate.
+
+- Software and executable specifications must remain available under `EUPL-1.2`.
+- Adapted protocol documentation, narratives, and diagrams must remain available under `CC-BY-SA-4.0`.
+- Contributions require DCO 1.1 sign-off.
+- Open licensing does not grant branding or endorsement rights; see `TRADEMARKS.md`.
+
+When a contribution crosses categories, reviewers should ensure the separable elements are clearly identified. An implementation change must not silently relicense protocol prose, and a documentation change must not convert an executable specification into a weaker licensing category.
 
 ## AI agents and models
 
@@ -109,6 +123,8 @@ Model outputs should be treated as artifacts with provenance, not as authority. 
 The project welcomes individuals, public bodies, companies, researchers, and civil-society groups. Participation does not create an entitlement to control.
 
 Contributors must disclose material conflicts when a change affects their employer, funding source, product, contract, political interest, or infrastructure position. Maintainers may request independent review or recusal.
+
+Commercial adoption, sponsorship, hosting, or support does not create additional governance power or permission to imply official endorsement.
 
 ## Language and accessibility
 
