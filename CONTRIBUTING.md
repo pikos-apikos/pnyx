@@ -59,6 +59,7 @@ A pull request should:
 - update authoritative documentation when behavior changes;
 - keep domain logic independent of framework code;
 - preserve event history and public-artifact provenance;
+- identify the applicable licensing category for new files;
 - avoid unrelated formatting or generated-file churn.
 
 Draft pull requests are welcome for early feedback.
@@ -73,6 +74,19 @@ Read `demo/AGENTS.md` before changing the prototype. Important boundaries includ
 - public artifacts are immutable and content-addressed;
 - long-term execution monitoring must remain deterministic rather than delegated to an LLM;
 - final civic judgment belongs to people.
+
+## Licensing of contributions
+
+Pnyx is a multi-license repository. Read [`LICENSING.md`](LICENSING.md) before submitting new material.
+
+- Software and executable specifications are licensed under `EUPL-1.2` only.
+- Protocol documentation, narratives, and diagrams are licensed under `CC-BY-SA-4.0`.
+- Mixed contributions may contain separable elements under both licences.
+- The Pnyx name and logos are governed separately by [`TRADEMARKS.md`](TRADEMARKS.md).
+
+By submitting a contribution, you agree that an accepted contribution will be licensed under the licence applicable to the work it modifies or creates. Add an explicit SPDX identifier or licensing notice when the default category would be ambiguous.
+
+Do not submit third-party material unless you have verified that it may be redistributed under the applicable Pnyx licence and have preserved all required attribution and notices.
 
 ## AI-assisted contributions
 
@@ -90,19 +104,19 @@ Do not submit secrets, personal data, private conversations, incompatible copyri
 
 ## Commit sign-off and provenance
 
-Pnyx uses the Developer Certificate of Origin instead of a separate contributor license agreement. Sign each commit with:
+Pnyx uses the Developer Certificate of Origin instead of a separate contributor licence agreement. Sign each commit with:
 
 ```bash
 git commit -s -m "Describe the change"
 ```
 
-The sign-off certifies the contribution under [`DCO`](DCO); it is not a GPG signature. Contributions are licensed under the repository's Apache-2.0 license unless a file explicitly states otherwise.
+The sign-off certifies the contribution under [`DCO`](DCO); it is not a GPG signature. The DCO certifies provenance and your right to contribute. The applicable project licence is determined by [`LICENSING.md`](LICENSING.md).
 
 ## Review and decisions
 
-Maintainers may request changes for correctness, security, privacy, accessibility, protocol integrity, evidence quality, or maintainability. A technically correct change may still be rejected if it obscures civic consequences or creates an unreviewable concentration of power.
+Maintainers may request changes for correctness, security, privacy, accessibility, protocol integrity, evidence quality, licensing compatibility, or maintainability. A technically correct change may still be rejected if it obscures civic consequences or creates an unreviewable concentration of power.
 
-Significant protocol or governance changes should begin as an issue and follow the decision process in `GOVERNANCE.md`.
+Significant protocol, licensing, trademark, or governance changes should begin as an issue and follow the decision process in `GOVERNANCE.md`.
 
 ## Conduct and security
 
