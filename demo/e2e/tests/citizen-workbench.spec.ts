@@ -39,7 +39,7 @@ test.describe('Citizen UI and Protocol Workbench', () => {
   });
 
   test('proposal defaults to a focused citizen brief', async ({ page }) => {
-    await page.route(`**/proposals/${proposalId}`, route => route.fulfill({
+    await page.route(new RegExp(`/proposals/${proposalId}$`), route => route.fulfill({
       status: 200,
       contentType: 'text/html',
       body: proposalFixture(),
@@ -47,17 +47,18 @@ test.describe('Citizen UI and Protocol Workbench', () => {
 
     await page.goto(`/proposals/${proposalId}`);
 
-    await expect(page.locator('[data-testid="citizen-brief"]')).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'The issue' })).toBeVisible();
-    await expect(page.getByText('Children with mobility difficulties')).toBeVisible();
+    const brief = page.locator('[data-testid="citizen-brief"]');
+    await expect(brief).toBeVisible();
+    await expect(brief.getByRole('heading', { name: 'The issue' })).toBeVisible();
+    await expect(brief.getByText('Children with mobility difficulties')).toBeVisible();
     await expect(page.locator('.detail-body')).toBeHidden();
-    await expect(page.getByRole('link', { name: 'Protocol Workbench' }).first()).toHaveAttribute(
+    await expect(brief.getByRole('link', { name: 'Protocol Workbench' })).toHaveAttribute(
       'href', `/workbench/proposals/${proposalId}`,
     );
   });
 
   test('workbench preserves protocol detail and guards premature decisions', async ({ page }) => {
-    await page.route(`**/proposals/${proposalId}?view=workbench`, route => route.fulfill({
+    await page.route(new RegExp(`/proposals/${proposalId}\\?view=workbench$`), route => route.fulfill({
       status: 200,
       contentType: 'text/html',
       body: proposalFixture('CLASSIFIED'),
