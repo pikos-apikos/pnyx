@@ -1,0 +1,74 @@
+name: Protocol or governance proposal
+description: Propose a change to civic rules, artifacts, governance, licensing, or authority
+title: "[Protocol]: "
+labels:
+  - protocol
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Protocol changes require visible rationale, disagreement, and review. A code change must not silently redefine civic meaning.
+  - type: textarea
+    id: current_rule
+    attributes:
+      label: Current rule or gap
+      description: Identify the current protocol, artifact, governance rule, or missing rule.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Why is it insufficient?
+      description: Describe the public problem, affected parties, and supporting evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed_change
+    attributes:
+      label: Proposed change
+      description: State the new rule precisely enough to review.
+    validations:
+      required: true
+  - type: textarea
+    id: authority
+    attributes:
+      label: Authority and power impact
+      description: Who gains, loses, exercises, delegates, or audits power under this change?
+    validations:
+      required: true
+  - type: textarea
+    id: rights
+    attributes:
+      label: Rights, privacy, and participation impact
+      description: Include excluded groups, accessibility, standing, identity, and personal-data implications.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and strongest objection
+      description: Present the strongest case against this proposal and meaningful alternatives.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and provenance
+      description: Link sources and identify uncertainty or disputed claims.
+  - type: textarea
+    id: migration
+    attributes:
+      label: Migration, compatibility, and rollback
+      description: Explain existing artifacts, implementations, or decisions that would be affected.
+  - type: textarea
+    id: review
+    attributes:
+      label: Required review perspectives
+      description: Identify legal, technical, economic, social, security, accessibility, or adversarial review needed.
+  - type: textarea
+    id: revisit
+    attributes:
+      label: Revisit conditions
+      description: What evidence or outcomes should cause this decision to be reconsidered?
+    validations:
+      required: true
