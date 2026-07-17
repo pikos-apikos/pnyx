@@ -96,7 +96,7 @@ Pnyx uses the Developer Certificate of Origin instead of a separate contributor 
 git commit -s -m "Describe the change"
 ```
 
-The sign-off certifies the contribution under `DCO.md`; it is not a GPG signature. Contributions are licensed under the repository's Apache-2.0 license unless a file explicitly states otherwise.
+The sign-off certifies the contribution under [`DCO`](DCO); it is not a GPG signature. Contributions are licensed under the repository's Apache-2.0 license unless a file explicitly states otherwise.
 
 ## Review and decisions
 
