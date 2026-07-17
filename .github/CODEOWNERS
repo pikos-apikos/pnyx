@@ -1,0 +1,16 @@
+# Bootstrap ownership. Expand this file as maintainers and review scopes grow.
+* @pikos-apikos
+
+# Protocol, licensing, and governance changes always require steward review.
+/docs/ @pikos-apikos
+/GOVERNANCE.md @pikos-apikos
+/COLLABORATION.md @pikos-apikos
+/CONTRIBUTING.md @pikos-apikos
+/DCO @pikos-apikos
+/LICENSE @pikos-apikos
+/LICENSES/ @pikos-apikos
+/LICENSING.md @pikos-apikos
+/NOTICE @pikos-apikos
+/PUBLIC_RELEASE_CHECKLIST.md @pikos-apikos
+/TRADEMARKS.md @pikos-apikos
+/SECURITY.md @pikos-apikos

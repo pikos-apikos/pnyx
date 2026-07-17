@@ -1,0 +1,64 @@
+name: Bug report
+description: Report a reproducible implementation failure
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve Pnyx. Do not use this form for security vulnerabilities or sensitive personal data; follow SECURITY.md instead.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the observed behavior and why it is a problem.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: Provide the smallest reliable sequence that reproduces the bug.
+      placeholder: |
+        1. Start ...
+        2. Open ...
+        3. Submit ...
+        4. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Revision or version
+      placeholder: Commit SHA, branch, or release
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Java version, browser, database, model provider, and other relevant configuration.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs or evidence
+      description: Remove secrets and personal data. Add screenshots only when needed.
+  - type: textarea
+    id: impact
+    attributes:
+      label: Civic or user impact
+      description: Could this suppress participation, expose data, distort public artifacts, or misrepresent a decision state?
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues for duplicates.
+          required: true
+        - label: This report does not contain secrets, private personal data, or an undisclosed vulnerability.
+          required: true
