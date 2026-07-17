@@ -15,6 +15,7 @@ The governance model should evolve as the contributor community becomes broader 
 5. **Problem before solution.** Major work begins with a clear problem statement and evidence.
 6. **Plural review.** High-impact changes require more than one perspective, especially for rights, privacy, security, feasibility, economics, and capture risk.
 7. **Revisability.** Decisions may be revisited when evidence, outcomes, or community capacity changes.
+8. **Commons reciprocity.** Commercial use is welcome, while improvements to the covered civic commons remain available to the commons under the applicable reciprocal licences.
 
 ## Roles
 
@@ -58,7 +59,7 @@ They require:
 
 ### Protocol or governance changes
 
-Examples: civic-loop states, judgment rules, participation rights, standing, panel composition, public-artifact schemas, execution authority, licensing, or repository governance.
+Examples: civic-loop states, judgment rules, participation rights, standing, panel composition, public-artifact schemas, execution authority, licensing, trademarks, or repository governance.
 
 They require:
 
@@ -97,9 +98,26 @@ Maintainer access may be limited or removed for inactivity, compromised credenti
 
 A maintainer must recuse themselves from decisions where they have a material personal, financial, organizational, or adversarial conflict.
 
+## Commons and commercial participation
+
+Pnyx welcomes use and contribution by individuals, public bodies, cooperatives, companies, researchers, and civil-society organizations.
+
+Commercial activity is permitted and encouraged when it expands useful implementation, hosting, integration, training, maintenance, or support. Commercial participation does not create a right to privatize covered improvements or to present a private implementation as the official project.
+
+The repository licensing model is defined in [`LICENSING.md`](LICENSING.md):
+
+- software and executable specifications use `EUPL-1.2`;
+- protocol documentation, narratives, and diagrams use `CC-BY-SA-4.0`;
+- contributions use DCO 1.1 for provenance;
+- names and logos are governed separately by [`TRADEMARKS.md`](TRADEMARKS.md).
+
+Licensing obligations are enforced by the licences themselves. Project governance does not grant exceptions silently. Any dual-licensing arrangement, commercial exception, relicensing decision, or trademark permission that could materially affect the commons requires a visible rationale, conflict disclosure, and the protocol-or-governance process.
+
 ## Funding and influence
 
-Funding, employment, infrastructure sponsorship, or model access does not purchase governance authority. Material support and related conditions must be disclosed. Decisions affecting a funder or vendor require independent review where possible.
+Funding, employment, infrastructure sponsorship, commercial adoption, or model access does not purchase governance authority. Material support and related conditions must be disclosed. Decisions affecting a funder or vendor require independent review where possible.
+
+No sponsor receives additional votes, merge rights, protocol authority, certification rights, or control over public memory merely because they fund development or infrastructure.
 
 ## Amendments
 
