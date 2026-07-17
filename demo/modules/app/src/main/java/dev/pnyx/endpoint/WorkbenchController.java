@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
  * The workbench route selects the protocol-heavy presentation without creating a
  * second civic lifecycle or a second source of truth.
  *
- * @see ../../../../../../docs/20_Protocol_Core/PROTOCOL.md
- * @see ../../../../../../docs/80_Runtime/API_SPEC.md
- * @see ../../../../../../docs/90_Information/PUBLIC_STORAGE_MODEL.md
+ * @see ../docs/20_Protocol_Core/PROTOCOL.md
+ * @see ../docs/80_Runtime/API_SPEC.md
+ * @see ../docs/90_Information/PUBLIC_STORAGE_MODEL.md
  */
 @Controller
 public class WorkbenchController {
