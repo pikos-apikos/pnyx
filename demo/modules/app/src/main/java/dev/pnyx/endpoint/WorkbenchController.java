@@ -38,7 +38,7 @@ public class WorkbenchController {
      * @return redirect to the existing proposal detail with workbench presentation
      */
     @GetMapping("/workbench/proposals/{proposalId}")
-    public String proposalWorkbench(@PathVariable UUID proposalId) {
+    public String proposalWorkbench(@PathVariable("proposalId") UUID proposalId) {
         return "redirect:/proposals/" + proposalId + "?view=workbench";
     }
 }
