@@ -31,14 +31,22 @@ function proposalFixture(state = 'CLASSIFIED'): string {
 }
 
 test.describe('Citizen UI and Protocol Workbench', () => {
-  test('civic home uses citizen-facing language', async ({ page }) => {
+  test('server renders the citizen-facing civic home', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: 'What needs our attention?' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Raise an Issue' }).first()).toBeVisible();
   });
 
-  test('proposal defaults to a focused citizen brief', async ({ page }) => {
+  test('server renders the guided problem-first intake', async ({ page }) => {
+    await page.goto('/proposals/new');
+
+    await expect(page.getByRole('heading', { name: 'Raise a Public Issue' })).toBeVisible();
+    await expect(page.getByText('You do not need a finished solution.')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Publish the Issue' })).toBeVisible();
+  });
+
+  test('browser presenter builds a focused citizen brief', async ({ page }) => {
     await page.route(new RegExp(`/proposals/${proposalId}$`), route => route.fulfill({
       status: 200,
       contentType: 'text/html',
@@ -57,7 +65,7 @@ test.describe('Citizen UI and Protocol Workbench', () => {
     );
   });
 
-  test('workbench preserves protocol detail and guards premature decisions', async ({ page }) => {
+  test('browser presenter preserves workbench detail and guards premature decisions', async ({ page }) => {
     await page.route(new RegExp(`/proposals/${proposalId}\\?view=workbench$`), route => route.fulfill({
       status: 200,
       contentType: 'text/html',
