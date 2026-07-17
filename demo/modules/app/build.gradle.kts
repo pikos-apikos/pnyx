@@ -36,7 +36,7 @@ dependencies {
     jooqCodegen("org.jooq:jooq-meta-extensions:${property("jooqVersion")}")
 
     // CLI
-    implementation("info.picocli:picocli-spring-boot-starter:4.7.6")
+    implementation("info.picocli:picocli-spring-boot-starter:4.7.7")
 
     // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
