@@ -78,3 +78,14 @@ jobs:
 
       - name: Run Playwright tests
         run: npm test
+
+      - name: Upload Playwright failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-failure-${{ github.run_id }}
+          path: |
+            demo/e2e/playwright-report/
+            demo/e2e/test-results/
+          if-no-files-found: warn
+          retention-days: 7
