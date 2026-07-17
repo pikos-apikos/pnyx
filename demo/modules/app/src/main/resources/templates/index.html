@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/layout :: head('Dashboard — Pnyx')}"></head>
+<head th:replace="~{fragments/layout :: head('Civic Home — Pnyx')}"></head>
 <body>
 
 <header th:replace="~{fragments/layout :: header('dashboard')}"></header>
@@ -9,53 +9,52 @@
     <div class="container">
 
         <section class="hero">
-            <h1>Public Reasoning, <br>Recorded Forever.</h1>
-            <p>Pnyx is a civic reasoning platform where proposals are submitted, reviewed by AI skill panels, decided by humans, and tracked through implementation — every step hash-chained on an immutable audit trail.</p>
-            <a href="/proposals/new" class="btn btn-primary btn-lg">Submit a Proposal</a>
+            <h1>What needs our attention?</h1>
+            <p>Start with a clear civic brief. Go deeper only when you need the evidence, disagreement, or full public record.</p>
+            <a href="/proposals/new" class="btn btn-primary btn-lg">Raise an Issue</a>
         </section>
 
-        <!-- Proposal list -->
         <section class="section">
             <div class="section-header section-header-primary">
                 <div class="section-header-accent"></div>
-                <h2>Active Proposals</h2>
+                <h2>Public Issues</h2>
             </div>
 
             <div th:if="${#lists.isEmpty(proposals)}" class="empty-state">
                 <div class="empty-state-icon">🏛</div>
-                <h3>No proposals yet</h3>
-                <p>The civic forum awaits its first submission. Proposals become public artifacts — content-addressed and permanently verifiable.</p>
-                <a href="/proposals/new" class="btn btn-accent">Submit the First Proposal</a>
+                <h3>No public issues yet</h3>
+                <p>Describe what is happening. You do not need to arrive with a finished solution.</p>
+                <a href="/proposals/new" class="btn btn-accent">Raise the First Issue</a>
             </div>
 
             <div th:unless="${#lists.isEmpty(proposals)}" class="card-grid">
-                <div th:each="p : ${proposals}" class="card card-hover">
+                <article th:each="p : ${proposals}" class="card card-hover">
                     <div class="card-header">
                         <h3 class="card-title" th:text="${p.title}">Proposal title</h3>
                         <span class="badge" th:classappend="'badge-' + ${#strings.toLowerCase(p.state)}" th:text="${p.state}">STATE</span>
                     </div>
+                    <p class="card-body">See the issue, where it stands, and what—if anything—is needed from you.</p>
                     <div class="card-footer">
                         <span class="tag tag-muted" th:text="${p.createdAt}">date</span>
-                        <a th:href="@{/proposals/{id}(id=${p.id.value()})}" class="btn btn-ghost btn-sm" style="margin-left:auto">View Details</a>
+                        <a th:href="@{/proposals/{id}(id=${p.id.value()})}" class="btn btn-ghost btn-sm" style="margin-left:auto">Open Civic Brief</a>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
-        <!-- Quick info -->
         <section class="section" style="margin-top:2rem">
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem">
                 <div class="card" style="text-align:center;padding:1.25rem">
                     <div style="font-family:var(--font-display);font-size:1.75rem;font-weight:700;color:var(--color-primary)" th:text="${#lists.size(proposals)}">0</div>
-                    <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.25rem">Active Proposals</div>
+                    <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.25rem">Public Issues</div>
                 </div>
                 <div class="card" style="text-align:center;padding:1.25rem">
-                    <div style="font-family:var(--font-display);font-size:1.75rem;font-weight:700;color:var(--color-primary)">✦</div>
-                    <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.25rem">Immutable Audit Trail</div>
+                    <div style="font-family:var(--font-display);font-size:1.75rem;font-weight:700;color:var(--color-primary)">Human</div>
+                    <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.25rem">Final Judgment</div>
                 </div>
                 <div class="card" style="text-align:center;padding:1.25rem">
-                    <div style="font-family:var(--font-display);font-size:1.75rem;font-weight:700;color:var(--color-primary)">SHA-256</div>
-                    <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.25rem">Hash-Chained Events</div>
+                    <div style="font-family:var(--font-display);font-size:1.75rem;font-weight:700;color:var(--color-primary)">Public</div>
+                    <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.25rem">Verifiable Memory</div>
                 </div>
             </div>
         </section>
