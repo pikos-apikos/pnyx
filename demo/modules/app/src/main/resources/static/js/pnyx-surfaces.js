@@ -47,15 +47,22 @@
   }
 
   function initHeader() {
-    document.querySelectorAll('.header-nav a').forEach(anchor => anchor.removeAttribute('aria-current'));
+    const links = document.querySelectorAll('.header-nav a');
+    links.forEach(anchor => anchor.removeAttribute('aria-current'));
+    if (workbench) links.forEach(anchor => anchor.classList.remove('active'));
+
     const selector = workbench
       ? '.header-nav a[data-surface-link="workbench"]'
       : window.location.pathname === '/proposals/new'
         ? '.header-nav a[href="/proposals/new"]'
-        : window.location.pathname === '/'
+        : window.location.pathname === '/' || proposalMatch
           ? '.header-nav a[href="/"]'
           : null;
-    if (selector) document.querySelector(selector)?.setAttribute('aria-current', 'page');
+    if (!selector) return;
+
+    const activeLink = document.querySelector(selector);
+    activeLink?.setAttribute('aria-current', 'page');
+    activeLink?.classList.add('active');
   }
 
   function initCharacterCounts() {
@@ -223,8 +230,13 @@
 
   function appendDecisionActions(section) {
     const actions = node('div', 'citizen-decision-actions');
-    document.querySelectorAll('form[action*="/decisions"]').forEach(form => actions.append(form.cloneNode(true)));
-    if (actions.children.length) section.append(actions);
+    document.querySelectorAll('form[action*="/decisions"]').forEach(form => {
+      actions.append(form.cloneNode(true));
+    });
+    if (!actions.children.length) return;
+
+    section.append(actions);
+    window.htmx?.process(actions);
   }
 
   function guardDecisionControls(state) {
