@@ -1,0 +1,67 @@
+apply plugin: 'pmd'
+
+def pmdToolVersion = '7.18.0'
+
+pmd {
+  ignoreFailures = false
+  consoleOutput = project.hasProperty('defaultVersion') && project.getProperty('defaultVersion') == true
+  toolVersion = pmdToolVersion
+  pmdTest.enabled = true
+  rulesMinimumPriority = 5
+  ruleSets = []
+}
+
+dependencies {
+  pmd "net.sourceforge.pmd:pmd-ant:${pmdToolVersion}"
+  pmd "net.sourceforge.pmd:pmd-java:${pmdToolVersion}"
+}
+
+pmdMain {
+  ruleSetFiles = files("${rootDir}/gradle/pmd-ruleset.xml")
+}
+
+pmdTest {
+  ruleSetFiles = files("${rootDir}/gradle/pmd-test-ruleset.xml")
+}
+
+tasks.withType(Pmd) {
+  reports {
+    html.required = project.hasProperty('defaultVersion') && project.getProperty('defaultVersion') == true
+    xml.required = !project.hasProperty('defaultVersion') || project.getProperty('defaultVersion') == false
+  }
+}
+
+apply plugin: "com.github.spotbugs"
+
+spotbugs {
+  ignoreFailures = false
+  showProgress = project.hasProperty('defaultVersion') && project.getProperty('defaultVersion') == true
+  toolVersion = '4.9.8'
+  // effort and reportLevel use string values — the enum coercion is deprecated
+  // and will fail in Gradle 10. To fix, move to Kotlin DSL build scripts where
+  // the SpotBugs enum classes are resolvable at configuration time.
+  effort = 'max'
+  reportLevel = 'high'
+  spotbugsTest.enabled = false
+}
+
+spotbugsTest {
+    reports {
+    html.required = project.hasProperty('defaultVersion') && project.getProperty('defaultVersion') == true
+    xml.required = !project.hasProperty('defaultVersion') || project.getProperty('defaultVersion') == false
+      }
+    }
+
+apply plugin: 'jacoco'
+
+jacoco {
+  toolVersion = '0.8.13'
+}
+
+jacocoTestReport {
+  reports {
+    html.required = project.hasProperty('defaultVersion') && project.getProperty('defaultVersion') == true
+    xml.required = false
+    csv.required = false
+  }
+}

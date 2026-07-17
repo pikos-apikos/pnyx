@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Execution Tracker — Pnyx')}"></head>
+<body>
+
+<header th:replace="~{fragments/layout :: header('dashboard')}"></header>
+
+<main class="main">
+    <div class="container">
+
+        <a href="/" class="back-link">← Back to Dashboard</a>
+
+        <div class="detail-header">
+            <h1>Implementation Tracker</h1>
+            <div class="detail-header-meta">
+                Decision: <code th:text="${fork.decisionId().value()}">decision-id</code>
+                <span class="tag tag-muted">Fork</span>
+                <code th:text="${fork.forkId()}">fork-id</code>
+            </div>
+        </div>
+
+        <!-- Execution Paths -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-header-accent"></div>
+                <h2>Execution Paths</h2>
+            </div>
+
+            <div th:if="${#lists.isEmpty(fork.paths())}" class="empty-state" style="padding:2rem">
+                <h3>No execution paths</h3>
+                <p>This fork has no execution paths defined yet.</p>
+            </div>
+
+            <div th:unless="${#lists.isEmpty(fork.paths())}" class="card-grid">
+                <div th:each="path : ${fork.paths()}" class="card card-hover">
+                    <div class="card-header">
+                        <h3 class="card-title" th:text="${path.title()}">Path title</h3>
+                        <span class="badge" th:classappend="${path.status() == 'IN_PROGRESS'} ? 'badge-classified' : (${path.status() == 'COMPLETED'} ? 'badge-approved' : 'badge-draft')"
+                              th:text="${path.status()}">STATUS</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="tag tag-muted" th:text="${path.pathType()}">type</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tasks -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-header-accent"></div>
+                <h2>Implementation Tasks</h2>
+            </div>
+
+            <div th:if="${#lists.isEmpty(fork.tasks())}" class="empty-state" style="padding:2rem">
+                <h3>No tasks yet</h3>
+                <p>Tasks will appear here once the implementation plan is detailed.</p>
+            </div>
+
+            <div th:unless="${#lists.isEmpty(fork.tasks())}" style="display:grid;gap:0.75rem">
+                <div th:each="task : ${fork.tasks()}" class="card">
+                    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:0.75rem;margin-bottom:0.5rem">
+                        <h3 style="font-family:var(--font-display);font-size:1rem;font-weight:600;margin:0" th:text="${task.title()}">Task title</h3>
+                        <span class="badge" th:classappend="${task.status() == 'IN_PROGRESS'} ? 'badge-classified' : (${task.status() == 'COMPLETED'} ? 'badge-approved' : (${task.status() == 'BLOCKED'} ? 'badge-rejected' : 'badge-draft'))"
+                              th:text="${task.status()}">STATUS</span>
+                    </div>
+
+                    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:0.5rem">
+                        <span th:if="${task.owner() != null}">Owner: <strong th:text="${task.owner()}">owner</strong></span>
+                        <span th:if="${task.dueDate() != null}">Due: <strong><time th:text="${task.dueDate()}">date</time></strong></span>
+                    </div>
+
+                    <p style="font-size:0.9rem;color:var(--color-text-secondary);margin:0.5rem 0 0" th:text="${task.summary()}">Task summary</p>
+
+                    <div th:if="${not #lists.isEmpty(task.evidenceLinks())}" style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--color-border-light)">
+                        <div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-muted);margin-bottom:0.375rem">Evidence Links</div>
+                        <ul style="list-style:none;padding:0;margin:0">
+                            <li th:each="link : ${task.evidenceLinks()}" style="margin-bottom:0.25rem">
+                                <a th:href="${link}" th:text="${link}" style="font-size:0.85rem;font-family:var(--font-mono);word-break:break-all">evidence</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+
+</body>
+</html>

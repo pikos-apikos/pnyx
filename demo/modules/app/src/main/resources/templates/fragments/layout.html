@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Pnyx</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/pnyx.css">
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+</head>
+
+<header th:fragment="header(activePage)" class="header">
+    <div class="container">
+        <a href="/" class="header-brand">
+            <span class="header-brand-mark">P</span>
+            Pnyx
+        </a>
+        <nav class="header-nav">
+            <a href="/" th:classappend="${activePage == 'dashboard'} ? 'active'">Dashboard</a>
+            <a href="/proposals/new" th:classappend="${activePage == 'new'} ? 'active'">New Proposal</a>
+            <a href="/audit" th:classappend="${activePage == 'audit'} ? 'active'">Audit Trail</a>
+        </nav>
+    </div>
+</header>
+
+<footer th:fragment="footer" class="footer">
+    <div class="container">
+        Pnyx — Public Reasoning Protocol · Data is append-only, hashes are forever.
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:16-alpine:///pnyx
+    username: pnyx
+    password: pnyx_dev
+  flyway:
+    enabled: true
+  main:
+    allow-bean-definition-overriding: true
+
+pnyx:
+  ai:
+    enabled: false
+  public-storage-path: ${java.io.tmpdir}/pnyx-test-data
+  prompt-path: ../../data/prompts
+  network: pnyx-test

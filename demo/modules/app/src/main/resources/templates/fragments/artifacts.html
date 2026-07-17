@@ -1,0 +1,664 @@
+<!-- v0.3 Artifact fragments for Participation, Execution, Monitoring, Learning -->
+
+<!-- ════════════════════════════════════════════════
+     Participation Plan
+     ════════════════════════════════════════════════ -->
+
+<!-- Participation Plan Form (shown in PARTICIPATION_DESIGN_PENDING) -->
+<div th:fragment="participation-plan-form(proposalId, action)" class="artifact-card artifact-card-plan">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <h4 class="artifact-card-title">Participation Plan</h4>
+        <p class="artifact-card-desc">Design how the public will participate in this proposal's deliberation.</p>
+
+        <form th:action="${action}" method="post" class="form-layout-two">
+            <!-- Left column -->
+            <div class="form-col">
+                <div class="form-group">
+                    <label class="form-label">Participation Modes</label>
+                    <div class="checkbox-cards">
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="selectedModes" value="open" checked>
+                            <span class="checkbox-card-label">Open</span>
+                            <span class="checkbox-card-desc">Anyone may participate</span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="selectedModes" value="affected_party">
+                            <span class="checkbox-card-label">Affected Party</span>
+                            <span class="checkbox-card-desc">Targeted outreach to affected groups</span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="selectedModes" value="targeted_invitation">
+                            <span class="checkbox-card-label">Targeted Invitation</span>
+                            <span class="checkbox-card-desc">Invite specific stakeholders</span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="selectedModes" value="institutional">
+                            <span class="checkbox-card-label">Institutional</span>
+                            <span class="checkbox-card-desc">Formal institutional participation</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="compensationRules" class="form-label">Compensation Rules</label>
+                    <textarea id="compensationRules" name="compensationRules" class="form-textarea" rows="2"
+                              placeholder="Describe how participants will be compensated..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Expected Barriers</label>
+                    <div class="list-input" data-list-name="expectedBarriers">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Language accessibility">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add barrier">+</button>
+                            </div>
+                        </div>
+                        <div class="form-hint">Press + to add each barrier to the list</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right column -->
+            <div class="form-col">
+                <div class="form-group">
+                    <label class="form-label">Missing Perspectives</label>
+                    <div class="list-input" data-list-name="missingPerspectives">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Youth voices">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add perspective">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Accessibility Measures</label>
+                    <div class="list-input" data-list-name="accessibilityMeasures">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Sign language interpretation">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add measure">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="auditCriteria" class="form-label">Audit Criteria <span class="form-required">*</span></label>
+                    <textarea id="auditCriteria" name="auditCriteria" class="form-textarea" rows="2" required
+                              placeholder="What criteria will be used to audit participation?"></textarea>
+                </div>
+
+                <div class="form-actions" style="margin-top:1rem">
+                    <button type="submit" class="btn btn-primary">Create Participation Plan</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Participation Plan View -->
+<div th:fragment="participation-plan-view(plan)" class="artifact-card artifact-card-plan artifact-card-view">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <div class="artifact-card-header">
+            <h4 class="artifact-card-title">Participation Plan</h4>
+            <span class="badge badge-active" th:text="${plan.status}">active</span>
+        </div>
+        <dl class="artifact-fields">
+            <div class="artifact-field">
+                <dt>Modes</dt>
+                <dd>
+                    <span th:each="mode, iter : ${plan.selectedModes}" class="tag tag-muted" style="margin-right:0.375rem;margin-bottom:0.25rem" th:text="${mode}">open</span>
+                </dd>
+            </div>
+            <div class="artifact-field" th:if="${not #lists.isEmpty(plan.expectedBarriers)}">
+                <dt>Expected Barriers</dt>
+                <dd>
+                    <ul class="artifact-list">
+                        <li th:each="b : ${plan.expectedBarriers}" th:text="${b}">barrier</li>
+                    </ul>
+                </dd>
+            </div>
+            <div class="artifact-field" th:if="${not #lists.isEmpty(plan.missingPerspectives)}">
+                <dt>Missing Perspectives</dt>
+                <dd>
+                    <ul class="artifact-list">
+                        <li th:each="p : ${plan.missingPerspectives}" th:text="${p}">perspective</li>
+                    </ul>
+                </dd>
+            </div>
+            <div class="artifact-field">
+                <dt>Audit Criteria</dt>
+                <dd th:text="${plan.auditCriteria}">criteria</dd>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     Participation Audit
+     ════════════════════════════════════════════════ -->
+
+<!-- Participation Audit Form (shown in PUBLIC_REVIEW_OPEN → READY_FOR_DECISION guard) -->
+<div th:fragment="participation-audit-form(proposalId, action)" class="artifact-card artifact-card-audit">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <h4 class="artifact-card-title">Issue Participation Audit</h4>
+        <p class="artifact-card-desc">Audit the participation process before declaring decision-readiness.</p>
+
+        <form th:action="${action}" method="post" class="form-layout-two">
+            <div class="form-col">
+                <div class="form-group">
+                    <label class="form-label">Audit Depth</label>
+                    <div class="radio-cards">
+                        <label class="radio-card">
+                            <input type="radio" name="depth" value="lightweight" checked>
+                            <span class="radio-card-label">Lightweight</span>
+                            <span class="radio-card-desc">Standard review for moderate-impact proposals</span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="depth" value="full">
+                            <span class="radio-card-label">Full</span>
+                            <span class="radio-card-desc">Comprehensive audit for high-impact proposals</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="auditorRef" class="form-label">Auditor Reference <span class="form-required">*</span></label>
+                    <input type="text" id="auditorRef" name="auditorRef" class="form-input" required
+                           placeholder="e.g. did:pnyx:auditor-1">
+                </div>
+
+                <div class="form-group">
+                    <label for="auditorConflictDeclaration" class="form-label">Conflict Declaration</label>
+                    <textarea id="auditorConflictDeclaration" name="auditorConflictDeclaration" class="form-textarea" rows="2"
+                              placeholder="Declare any conflicts of interest..."></textarea>
+                </div>
+            </div>
+
+            <div class="form-col">
+                <div class="form-group">
+                    <label for="findings" class="form-label">Findings</label>
+                    <textarea id="findings" name="findings" class="form-textarea" rows="3"
+                              placeholder="Summary of audit findings..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="limitations" class="form-label">Limitations</label>
+                    <textarea id="limitations" name="limitations" class="form-textarea" rows="2"
+                              placeholder="Any limitations or caveats..."></textarea>
+                </div>
+
+                <div class="form-actions" style="margin-top:1rem">
+                    <button type="submit" class="btn btn-primary">Issue Audit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Participation Audit View -->
+<div th:fragment="participation-audit-view(audit)" class="artifact-card artifact-card-audit artifact-card-view">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <div class="artifact-card-header">
+            <h4 class="artifact-card-title">Participation Audit</h4>
+            <span class="badge" th:classappend="${audit.challengeableStatus == 'open'} ? 'badge-active' : 'badge-closed'" th:text="${audit.challengeableStatus}">open</span>
+        </div>
+        <dl class="artifact-fields">
+            <div class="artifact-field">
+                <dt>Depth</dt>
+                <dd><span class="tag" th:text="${audit.depth}">lightweight</span></dd>
+            </div>
+            <div class="artifact-field">
+                <dt>Auditor</dt>
+                <dd><code th:text="${audit.auditorRef}">did:pnyx:auditor</code></dd>
+            </div>
+            <div class="artifact-field" th:if="${audit.findings != null and !audit.findings.isEmpty()}">
+                <dt>Findings</dt>
+                <dd th:text="${audit.findings}">findings</dd>
+            </div>
+            <div class="artifact-field" th:if="${audit.limitations != null and !audit.limitations.isEmpty()}">
+                <dt>Limitations</dt>
+                <dd th:text="${audit.limitations}">limitations</dd>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     Civic Receipt
+     ════════════════════════════════════════════════ -->
+
+<!-- Civic Receipt Form -->
+<div th:fragment="civic-receipt-form(proposalId, action)" class="artifact-card artifact-card-receipt">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <h4 class="artifact-card-title">Issue Civic Receipt</h4>
+        <p class="artifact-card-desc">Prove a participant's civic action was accepted and recorded.</p>
+
+        <form th:action="${action}" method="post" class="form-layout-two">
+            <div class="form-col">
+                <div class="form-group">
+                    <label for="participantRef" class="form-label">Participant Reference <span class="form-required">*</span></label>
+                    <input type="text" id="participantRef" name="participantRef" class="form-input" required
+                           placeholder="e.g. did:pnyx:participant-42">
+                </div>
+            </div>
+            <div class="form-col">
+                <div class="form-group">
+                    <label for="actionType" class="form-label">Action Type <span class="form-required">*</span></label>
+                    <input type="text" id="actionType" name="actionType" class="form-input" required
+                           placeholder="e.g. evidence_submission, public_comment">
+                </div>
+                <div class="form-actions" style="margin-top:0.5rem">
+                    <button type="submit" class="btn btn-primary">Issue Receipt</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Civic Receipt View -->
+<div th:fragment="civic-receipt-view(receipt)" class="artifact-card artifact-card-receipt artifact-card-view">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <div class="artifact-card-header">
+            <h4 class="artifact-card-title">Civic Receipt</h4>
+            <span class="badge" th:classappend="${receipt.status == 'INCLUDED'} ? 'badge-active' : 'badge-draft'" th:text="${receipt.status}">included</span>
+        </div>
+        <dl class="artifact-fields">
+            <div class="artifact-field">
+                <dt>Participant</dt>
+                <dd><code th:text="${receipt.participantRef}">did:pnyx:participant</code></dd>
+            </div>
+            <div class="artifact-field">
+                <dt>Action</dt>
+                <dd><span class="tag" th:text="${receipt.actionType}">action</span></dd>
+            </div>
+            <div class="artifact-field">
+                <dt>Proof</dt>
+                <dd><code style="font-size:0.75rem" th:text="${receipt.inclusionProofRef}">sha256:...</code></dd>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<!-- Civic Receipt List -->
+<div th:fragment="civic-receipt-list(receipts)" class="artifact-card artifact-card-receipt artifact-card-view">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <div class="artifact-card-header">
+            <h4 class="artifact-card-title">Civic Receipts</h4>
+            <span class="badge badge-muted" th:text="${#lists.size(receipts)} + ' total'">0 total</span>
+        </div>
+        <div th:if="${#lists.isEmpty(receipts)}" style="color:var(--color-text-muted);font-size:0.9rem;font-style:italic">
+            No receipts issued yet.
+        </div>
+        <div th:unless="${#lists.isEmpty(receipts)}" class="receipt-list">
+            <div th:each="r : ${receipts}" class="receipt-row">
+                <div class="receipt-row-main">
+                    <span class="tag tag-muted" th:text="${r.actionType}">action</span>
+                    <code th:text="${r.participantRef}">participant</code>
+                </div>
+                <div class="receipt-row-meta">
+                    <span class="badge" th:classappend="${r.status == 'INCLUDED'} ? 'badge-active' : 'badge-draft'" th:text="${r.status}">status</span>
+                    <code style="font-size:0.7rem;max-width:120px;overflow:hidden;text-overflow:ellipsis" th:text="${r.inclusionProofRef}">hash</code>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     Execution Mandate
+     ════════════════════════════════════════════════ -->
+
+<!-- Execution Mandate Form (shown in ROUTED state) -->
+<div th:fragment="execution-mandate-form(proposalId, action)" class="artifact-card artifact-card-mandate">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <h4 class="artifact-card-title">Issue Execution Mandate</h4>
+        <p class="artifact-card-desc">Authorize execution with defined constraints, resources, and monitoring obligations.</p>
+
+        <form th:action="${action}" method="post" class="form-layout-two">
+            <div class="form-col">
+                <div class="form-group">
+                    <label for="authorizedActor" class="form-label">Authorized Actor <span class="form-required">*</span></label>
+                    <input type="text" id="authorizedActor" name="authorizedActor" class="form-input" required
+                           placeholder="e.g. did:pnyx:executor-1">
+                </div>
+
+                <div class="form-group">
+                    <label for="resourceAllocation" class="form-label">Resource Allocation</label>
+                    <textarea id="resourceAllocation" name="resourceAllocation" class="form-textarea" rows="2"
+                              placeholder="Budget, personnel, materials allocated..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Permitted Actions</label>
+                    <div class="list-input" data-list-name="permittedActions">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Procure materials">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Prohibited Actions</label>
+                    <div class="list-input" data-list-name="prohibitedActions">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Subcontract without approval">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-col">
+                <div class="form-group">
+                    <label class="form-label">Success Criteria</label>
+                    <div class="list-input" data-list-name="successCriteria">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. 90% completion rate">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Failure Criteria</label>
+                    <div class="list-input" data-list-name="failureCriteria">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Budget overrun >20%">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Monitoring Obligations</label>
+                    <div class="list-input" data-list-name="monitoringObligations">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Monthly progress reports">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Rollback Conditions</label>
+                    <div class="list-input" data-list-name="rollbackConditions">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Safety incident triggers halt">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions" style="margin-top:1rem">
+                    <button type="submit" class="btn btn-primary">Issue Mandate</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Execution Mandate View -->
+<div th:fragment="execution-mandate-view(mandate)" class="artifact-card artifact-card-mandate artifact-card-view">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <div class="artifact-card-header">
+            <h4 class="artifact-card-title">Execution Mandate</h4>
+            <span class="tag tag-muted" th:text="${mandate.issuedAt}">issued</span>
+        </div>
+        <dl class="artifact-fields">
+            <div class="artifact-field">
+                <dt>Authorized Actor</dt>
+                <dd><code th:text="${mandate.authorizedActor}">actor</code></dd>
+            </div>
+            <div class="artifact-field" th:if="${not #lists.isEmpty(mandate.permittedActions)}">
+                <dt>Permitted Actions</dt>
+                <dd>
+                    <ul class="artifact-list">
+                        <li th:each="a : ${mandate.permittedActions}" th:text="${a}">action</li>
+                    </ul>
+                </dd>
+            </div>
+            <div class="artifact-field">
+                <dt>Resource Allocation</dt>
+                <dd th:text="${mandate.resourceAllocation}">resources</dd>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     Monitoring Record
+     ════════════════════════════════════════════════ -->
+
+<!-- Monitoring Record Form (shown in EXECUTION_COMPLETED) -->
+<div th:fragment="monitoring-form(proposalId, action)" class="artifact-card artifact-card-monitoring">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <h4 class="artifact-card-title">Start Monitoring</h4>
+        <p class="artifact-card-desc">Define how execution outcomes will be tracked and reported.</p>
+
+        <form th:action="${action}" method="post" class="form-layout-two">
+            <div class="form-col">
+                <div class="form-group">
+                    <label for="responsibleParty" class="form-label">Responsible Party <span class="form-required">*</span></label>
+                    <input type="text" id="responsibleParty" name="responsibleParty" class="form-input" required
+                           placeholder="e.g. did:pnyx:monitor-1">
+                </div>
+
+                <div class="form-group">
+                    <label for="monitoringStartDate" class="form-label">Start Date <span class="form-required">*</span></label>
+                    <input type="date" id="monitoringStartDate" name="monitoringStartDate" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="monitoringEndDate" class="form-label">End Date</label>
+                    <input type="date" id="monitoringEndDate" name="monitoringEndDate" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="reportingFrequency" class="form-label">Reporting Frequency</label>
+                    <select id="reportingFrequency" name="reportingFrequency" class="form-input">
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly" selected>Monthly</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="annually">Annually</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-col">
+                <div class="form-group">
+                    <label class="form-label">Milestones</label>
+                    <div class="list-input" data-list-name="milestones">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Phase 1 complete">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Metrics</label>
+                    <div class="list-input" data-list-name="metrics">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Cost variance">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions" style="margin-top:1rem">
+                    <button type="submit" class="btn btn-primary">Start Monitoring</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Monitoring Record View -->
+<div th:fragment="monitoring-view(record)" class="artifact-card artifact-card-monitoring artifact-card-view">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <div class="artifact-card-header">
+            <h4 class="artifact-card-title">Monitoring</h4>
+            <span class="badge" th:classappend="${record.status == 'active'} ? 'badge-active' : 'badge-closed'" th:text="${record.status}">active</span>
+        </div>
+        <dl class="artifact-fields">
+            <div class="artifact-field">
+                <dt>Responsible Party</dt>
+                <dd><code th:text="${record.responsibleParty}">monitor</code></dd>
+            </div>
+            <div class="artifact-field">
+                <dt>Start Date</dt>
+                <dd th:text="${record.monitoringStartDate}">date</dd>
+            </div>
+            <div class="artifact-field" th:if="${record.monitoringEndDate != null}">
+                <dt>End Date</dt>
+                <dd th:text="${record.monitoringEndDate}">date</dd>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     Learning Artifact
+     ════════════════════════════════════════════════ -->
+
+<!-- Learning Artifact Form (shown in MONITORING_ACTIVE) -->
+<div th:fragment="learning-form(proposalId, action)" class="artifact-card artifact-card-learning">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <h4 class="artifact-card-title">Publish Learning Artifact</h4>
+        <p class="artifact-card-desc">Capture lessons, success factors, and recommendations from this proposal's execution.</p>
+
+        <form th:action="${action}" method="post" class="form-layout-two">
+            <div class="form-col">
+                <div class="form-group">
+                    <label for="publishedBy" class="form-label">Published By <span class="form-required">*</span></label>
+                    <input type="text" id="publishedBy" name="publishedBy" class="form-input" required
+                           placeholder="e.g. did:pnyx:reviewer-1">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Lessons Learned</label>
+                    <div class="list-input" data-list-name="lessonsLearned">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Community engagement was effective">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Success Factors</label>
+                    <div class="list-input" data-list-name="successFactors">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Clear project scope">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-col">
+                <div class="form-group">
+                    <label class="form-label">Failure Factors</label>
+                    <div class="list-input" data-list-name="failureFactors">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Underestimated timeline">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Recommendations</label>
+                    <div class="list-input" data-list-name="recommendations">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Allocate contingency budget">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Applicable Contexts</label>
+                    <div class="list-input" data-list-name="applicableContexts">
+                        <div class="list-input-items">
+                            <div class="list-input-row">
+                                <input type="text" class="form-input list-input-field" placeholder="e.g. Similar municipal projects">
+                                <button type="button" class="btn btn-sm btn-ghost list-input-add" aria-label="Add">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions" style="margin-top:1rem">
+                    <button type="submit" class="btn btn-primary">Publish Learning</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Learning Artifact View -->
+<div th:fragment="learning-view(artifact)" class="artifact-card artifact-card-learning artifact-card-view">
+    <div class="artifact-card-accent"></div>
+    <div class="artifact-card-body">
+        <div class="artifact-card-header">
+            <h4 class="artifact-card-title">Learning Artifact</h4>
+            <span class="tag tag-muted" th:text="${artifact.publishedAt}">published</span>
+        </div>
+        <dl class="artifact-fields">
+            <div class="artifact-field" th:if="${not #lists.isEmpty(artifact.lessonsLearned)}">
+                <dt>Lessons Learned</dt>
+                <dd>
+                    <ul class="artifact-list">
+                        <li th:each="l : ${artifact.lessonsLearned}" th:text="${l}">lesson</li>
+                    </ul>
+                </dd>
+            </div>
+            <div class="artifact-field">
+                <dt>Published By</dt>
+                <dd><code th:text="${artifact.publishedBy}">publisher</code></dd>
+            </div>
+        </dl>
+    </div>
+</div>

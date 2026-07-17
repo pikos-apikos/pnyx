@@ -1,0 +1,27 @@
+spring:
+  application.name: pnyx
+  threads.virtual.enabled: true
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/pnyx}
+    username: ${SPRING_DATASOURCE_USERNAME:pnyx}
+    password: ${SPRING_DATASOURCE_PASSWORD:pnyx_dev}
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:lm-studio}
+      base-url: ${OPENAI_BASE_URL:http://localhost:52105/v1}
+      chat:
+        # Feature flag: AI model selection
+        # Default: local model via LM Studio (override via PNYX_AI_MODEL env var)
+        model: ${PNYX_AI_MODEL:local-model}
+
+pnyx:
+  public-storage-path: ${PNYX_PUBLIC_STORAGE_PATH:./data/public}
+  prompt-path: ${PNYX_PROMPT_PATH:./data/prompts}
+  network: ${PNYX_NETWORK:pnyx-demo}
+  skill-panel:
+    # Pool of expert role IDs the AI may pick from for a proposal's review panel
+    # Default: full canonical set (7 roles)
+    available-skill-roles: ${PNYX_AVAILABLE_SKILL_ROLES:legal-reviewer,economic-reviewer,social-reviewer,technical-reviewer,risk-reviewer,anti-capture-reviewer,adversarial-critic-reviewer}
+    # Max number of reviewers the AI can select per proposal
+    # Constrains concurrent inference calls to the LM Studio server (--parallel 4)
+    max-panel-size: ${PNYX_MAX_PANEL_SIZE:4}
