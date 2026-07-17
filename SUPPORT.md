@@ -5,6 +5,7 @@ Pnyx is an experimental open-source project. There is currently no commercial su
 ## Questions and usage help
 
 - Read the root `README.md`, `docs/README.md`, and `demo/README.md` first.
+- Read `LICENSING.md` for software, documentation, contribution, and trademark boundaries.
 - Search existing issues before opening a new one.
 - Use GitHub Discussions for open-ended questions once Discussions is enabled.
 - Open an issue when documentation is unclear or the prototype behaves differently from the documented protocol.
@@ -15,7 +16,11 @@ Use the bug-report issue form and include reproduction steps, environment detail
 
 ## Protocol and governance questions
 
-Use the protocol-proposal issue form for changes to civic rules, public artifacts, participation, judgment, execution, governance, or licensing. These are not ordinary feature requests and require an explicit public rationale.
+Use the protocol-proposal issue form for changes to civic rules, public artifacts, participation, judgment, execution, governance, licensing, or trademarks. These are not ordinary feature requests and require an explicit public rationale.
+
+## Licensing and trademark questions
+
+Open an issue for public questions about `EUPL-1.2`, `CC-BY-SA-4.0`, DCO sign-off, compatibility, attribution, or use of the Pnyx marks. Do not assume that an open copyright licence grants certification, endorsement, or branding rights.
 
 ## Security and conduct
 
