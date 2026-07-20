@@ -37,7 +37,7 @@ Start with:
 - [`70_Bootstrap/PILOT_DOMAIN_TEMPLATE.md`](70_Bootstrap/PILOT_DOMAIN_TEMPLATE.md) — How to specify a pilot
 - [`90_Information/SCHEMAS.md`](90_Information/SCHEMAS.md) — Canonical JSON payload shapes
 - [`80_Runtime/EVENT_MODEL.md`](80_Runtime/EVENT_MODEL.md) — Command/event architecture
-- [`prototype/`](../prototype/) — Working Phase 1 simulation (TypeScript/Node.js)
+- [`demo/`](../demo/) — Working Java/Spring Boot reference implementation
 
 ### For Researchers
 
@@ -84,7 +84,7 @@ This specification is organized in **11 numbered layers** representing logical d
 
 **Version 1.0 (Original):** ~2,500 lines, 17 documents
 **Version 2.0 (Post-Mitigation):** ~9,500 lines, 28 documents
-**Version 2.1 (Current):** ~29,400 lines, 42 documents + working prototype
+**Version 2.1 (Current):** ~29,400 lines, 42 documents + working reference implementation
 
 **Major changes in 2.2:**
 - Applied `SYSTEM_PATCH_v1` enforcing executor-agnostic, evidence-backed civic analysis
@@ -92,7 +92,7 @@ This specification is organized in **11 numbered layers** representing logical d
 - Replaced `SkillOutput` with structured `EvidencePacket` containing explicit citations
 
 **Major changes in 2.1:**
-- Built working Phase 1 prototype (TypeScript/Node.js, end-to-end civic loop simulation)
+- Built a working end-to-end civic loop reference implementation
 - Added adversarial post-mitigation critique identifying 10 persistent weaknesses
 - Created AI epistemic risk framework (monoculture, false plurality, framing convergence)
 - Developed complete bootstrap lifecycle (community formation → reality check → shutdown)
@@ -124,23 +124,32 @@ This specification is organized in **11 numbered layers** representing logical d
 | Reference | 9 | 5,350 |
 | **Total** | **62** | **~35,700** |
 
-## Prototype
+## Reference Implementation
 
-A working Phase 1 prototype exists in [`prototype/`](../prototype/).
+A working Java reference implementation exists in [`demo/`](../demo/).
 
-**Stack:** TypeScript, Node.js, in-memory event store (PostgreSQL-ready)
-**Run:** `cd prototype && npm install && npm run simulate`
+**Stack:** Java 25, Spring Boot, PostgreSQL, jOOQ, Thymeleaf/HTMX, Gradle
 
-The prototype implements the full civic loop:
-- Proposal submission and classification
-- 5-skill panel assembly with provider diversity
-- Skill execution (mock + OpenAI + Anthropic adapters)
-- Packet synthesis preserving disagreement
-- Append-only event store with SHA-256 hash chain
-- 4 audit views (timeline, decision record, operator actions, incidents)
-- Chain integrity verification
+**Run:**
 
-**Status:** Phase 1 (internal simulation) complete. Phase 2 (closed pilot) pending community selection.
+```bash
+cd demo
+docker compose up -d postgres
+./gradlew :app:bootRun
+```
+
+Open `http://localhost:8080`.
+
+The reference implementation covers the civic loop through:
+- Proposal submission, clarification, and validation
+- 5-role skill-panel deliberation
+- Evidence-backed public artifacts
+- Public decisions and implementation tracking
+- Append-only, SHA-256 hash-chained event streams
+- Content-addressed public storage and audit views
+- Chain-integrity verification
+
+**Status:** Working prototype and reference implementation; not production-ready.
 
 ## Contributing
 
@@ -158,19 +167,19 @@ This is a living specification. Improvements welcome.
 ## Status
 
 **Specification:** 44 documents across 11 layers (~30,200 lines)
-**Prototype:** Phase 1 simulation working (end-to-end civic loop)
-**Next step:** Select first pilot community, run Phase 2 closed pilot
+**Reference implementation:** Java/Spring Boot demo with an end-to-end civic loop
+**Next step:** Select first pilot community and test the loop with real participants
 **Critique status:** 4 of 10 identified issues addressed; 6 require empirical testing or external review
 
 ## Contact & Community
 
 - **Issues:** Open an issue in this repository
 - **Discussions:** Use GitHub Discussions for questions
-- **Contribute:** See CONTRIBUTING.md (TODO)
+- **Contribute:** See CONTRIBUTING.md
 
 ## License
 
-This specification is released under [license]. The goal is maximum accessibility for civic use while preventing proprietary enclosure of public governance infrastructure.
+This specification follows the repository's documented multi-license model. See [`../LICENSING.md`](../LICENSING.md).
 
 **Public IP Note:** Per [`50_Economics/PUBLIC_IP_MODEL.md`](50_Economics/PUBLIC_IP_MODEL.md), outputs from this system should default to commons-preferred licensing.
 
@@ -184,6 +193,6 @@ This specification is released under [license]. The goal is maximum accessibilit
 
 ---
 
-**Last Updated:** April 2026
-**System Version:** 2.1 (Post-Critique + Prototype)
-**Documentation Version:** 2.1
+**Last Updated:** July 2026
+**System Version:** 2.2
+**Documentation Version:** 2.2
