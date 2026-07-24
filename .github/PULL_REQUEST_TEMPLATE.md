@@ -1,20 +1,32 @@
+## Linked issue
+
+For non-trivial changes, link the structured issue that defines the problem and scope.
+
+Closes #
+
 ## Problem
 
-What problem does this change address? Who or what is affected?
+What specific problem does this change address? Who or what is affected?
 
 ## Change
 
-What changed, and why is this approach preferable to the alternatives?
+What changed, and why is this the smallest coherent response to the problem?
 
 ## Public and developer impact
 
-Describe any effect on citizens, public artifacts, protocol behavior, APIs, operators, contributors, or deployments.
+Describe any effect on citizens, public artifacts, protocol behavior, APIs, operators, contributors, deployments, or maintainer attention.
 
 ## Evidence and verification
 
 - Tests or checks run:
 - Evidence or sources used:
+- Deterministic validation performed:
 - Known limitations or uncertainty:
+- What could falsify or require revision of this change:
+
+## Human ownership
+
+Who reviewed the complete diff and is prepared to clarify, revise, test, or maintain this contribution during review?
 
 ## Risk review
 
@@ -24,6 +36,7 @@ Describe any effect on citizens, public artifacts, protocol behavior, APIs, oper
 - [ ] Accessibility and attention cost considered
 - [ ] Capture, conflict-of-interest, and concentration-of-power risks considered
 - [ ] Migration, rollback, or compatibility considered where applicable
+- [ ] This pull request contains one coherent change and no unrelated generated material
 
 ## Licensing and provenance
 
@@ -45,10 +58,17 @@ See `LICENSING.md`, `DCO`, and `TRADEMARKS.md`.
 
 ## AI assistance
 
-- [ ] No substantive AI assistance was used
-- [ ] AI assistance was used and is disclosed below
+Select one:
 
-Model/tool, affected work, human verification, external sources, and remaining uncertainty:
+- [ ] No substantive AI assistance was used
+- [ ] AI was used only for language or formatting
+- [ ] AI was used for analysis, code, research, or argument generation and is disclosed below
+
+Model/tool, affected work, sources, human verification, and remaining uncertainty:
+
+Responsibility:
+
+- [ ] I reviewed the complete submission and take responsibility for every claim and change it contains. AI output is not presented as evidence, expertise, attestation, or independent review.
 
 ## Documentation and public memory
 
