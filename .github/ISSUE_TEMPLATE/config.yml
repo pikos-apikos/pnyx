@@ -1,8 +1,8 @@
-blank_issues_enabled: true
+blank_issues_enabled: false
 contact_links:
   - name: Security vulnerability
     url: https://github.com/pikos-apikos/pnyx/security/policy
     about: Report vulnerabilities privately according to the security policy.
   - name: Contribution and licensing guide
     url: https://github.com/pikos-apikos/pnyx/blob/main/CONTRIBUTING.md
-    about: Read the contribution, DCO, licensing, and provenance requirements before submitting work.
+    about: Read the contribution, DCO, licensing, provenance, and repository-scope requirements before submitting work.
