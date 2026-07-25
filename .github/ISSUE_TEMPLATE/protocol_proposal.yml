@@ -1,74 +1,99 @@
-name: Protocol or governance proposal
-description: Propose a change to civic rules, artifacts, governance, licensing, or authority
-title: "[Protocol]: "
+name: Scoped protocol proposal
+description: Propose one reviewable change to a specific Pnyx rule, artifact, or subsystem
+title: "[Proposal]: "
 labels:
   - protocol
 body:
   - type: markdown
     attributes:
       value: |
-        Protocol changes require visible rationale, disagreement, and review. A code change must not silently redefine civic meaning.
-  - type: textarea
-    id: current_rule
+        Pnyx issues are an engineering and evidence workbench, not an open discussion forum. Keep this proposal tied to one specific artifact or subsystem and one coherent change.
+  - type: input
+    id: target
     attributes:
-      label: Current rule or gap
-      description: Identify the current protocol, artifact, governance rule, or missing rule.
+      label: Target artifact or subsystem
+      description: Name the exact document, section, schema, API, module, invariant, or runtime behavior affected.
+      placeholder: docs/20_Protocol_Core/PROTOCOL.md §8.12 or demo/modules/core/...
     validations:
       required: true
   - type: textarea
     id: problem
     attributes:
-      label: Why is it insufficient?
-      description: Describe the public problem, affected parties, and supporting evidence.
+      label: Current problem
+      description: Describe what is happening now, who or what is affected, and why the current behavior is insufficient.
     validations:
       required: true
   - type: textarea
     id: proposed_change
     attributes:
-      label: Proposed change
-      description: State the new rule precisely enough to review.
+      label: Minimum proposed change
+      description: State the smallest change that could address the problem. Avoid unrelated redesigns.
     validations:
       required: true
   - type: textarea
-    id: authority
+    id: basis
     attributes:
-      label: Authority and power impact
-      description: Who gains, loses, exercises, delegates, or audits power under this change?
+      label: Basis of the proposal
+      description: Separate direct observations, published sources, professional experience, reasoned inference, and bootstrap assumptions. It is acceptable to state that something is not yet verified.
     validations:
       required: true
   - type: textarea
-    id: rights
+    id: falsifiability
     attributes:
-      label: Rights, privacy, and participation impact
-      description: Include excluded groups, accessibility, standing, identity, and personal-data implications.
+      label: Validation or falsification path
+      description: What test, simulation, observation, review, or future outcome could show that this change is wrong or ineffective?
+    validations:
+      required: true
+  - type: textarea
+    id: power_impact
+    attributes:
+      label: Power, rights, and capture impact
+      description: Who gains or loses authority, attention, access, resources, privacy, or audit capacity under this change?
     validations:
       required: true
   - type: textarea
     id: alternatives
     attributes:
       label: Alternatives and strongest objection
-      description: Present the strongest case against this proposal and meaningful alternatives.
+      description: Present at least one meaningful alternative and the strongest case against your proposal.
     validations:
       required: true
   - type: textarea
-    id: evidence
-    attributes:
-      label: Evidence and provenance
-      description: Link sources and identify uncertainty or disputed claims.
-  - type: textarea
-    id: migration
+    id: compatibility
     attributes:
       label: Migration, compatibility, and rollback
-      description: Explain existing artifacts, implementations, or decisions that would be affected.
+      description: Explain which existing artifacts, implementations, decisions, or public records would be affected.
   - type: textarea
-    id: review
+    id: champion
     attributes:
-      label: Required review perspectives
-      description: Identify legal, technical, economic, social, security, accessibility, or adversarial review needed.
-  - type: textarea
-    id: revisit
-    attributes:
-      label: Revisit conditions
-      description: What evidence or outcomes should cause this decision to be reconsidered?
+      label: Human ownership
+      description: State what you are prepared to clarify, revise, test, or maintain during review. Submitting an issue does not transfer the full review burden to maintainers.
     validations:
       required: true
+  - type: dropdown
+    id: ai_assistance
+    attributes:
+      label: Substantive AI assistance
+      description: Select the closest description of how AI was used for this proposal.
+      options:
+        - No substantive AI assistance
+        - Language or formatting only
+        - Analysis, code, research, or argument generation
+    validations:
+      required: true
+  - type: textarea
+    id: ai_details
+    attributes:
+      label: AI assistance details
+      description: If substantive AI assistance was used, state what it produced, which claims or sources you personally checked, and what remains uncertain.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: I searched existing issues and authoritative documentation for overlap.
+          required: true
+        - label: This submission proposes one coherent change and does not include unrelated generated material.
+          required: true
+        - label: I reviewed this submission and take responsibility for every claim it contains. AI output is not presented as evidence, expertise, or independent review.
+          required: true

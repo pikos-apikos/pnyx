@@ -1,0 +1,92 @@
+name: Artifact or claim challenge
+description: Challenge a specific Pnyx artifact, claim, assumption, or recorded decision
+title: "[Challenge]: "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to challenge something specific and reviewable. You do not need to prove the final answer before raising a concern, but you must identify the exact target and the basis of the challenge.
+  - type: input
+    id: target
+    attributes:
+      label: Exact target
+      description: Link or name the exact file, section, schema, claim, event, output, or decision being challenged.
+      placeholder: docs/... §..., commit SHA, public artifact hash, or quoted claim
+    validations:
+      required: true
+  - type: textarea
+    id: challenge
+    attributes:
+      label: What may be wrong or incomplete?
+      description: Describe the possible error, omission, conflict, ambiguity, or unsupported assumption.
+    validations:
+      required: true
+  - type: textarea
+    id: consequence
+    attributes:
+      label: Why does it matter?
+      description: Explain the possible civic, technical, economic, legal, privacy, accessibility, safety, or audit consequence if the target is wrong.
+    validations:
+      required: true
+  - type: dropdown
+    id: basis_type
+    attributes:
+      label: Primary basis of the challenge
+      options:
+        - Direct observation
+        - Published source
+        - Professional experience
+        - Reasoned inference
+        - Bootstrap assumption or counterexample
+        - I am not sure; this needs investigation
+    validations:
+      required: true
+  - type: textarea
+    id: basis_details
+    attributes:
+      label: Basis details
+      description: Provide the observation, source, experience, reasoning, or counterexample. Clearly distinguish verified facts from inference and uncertainty.
+    validations:
+      required: true
+  - type: textarea
+    id: resolution
+    attributes:
+      label: What would resolve or narrow the challenge?
+      description: Name a test, source, correction, clarification, simulation, professional review, or observed outcome that would help.
+    validations:
+      required: true
+  - type: textarea
+    id: ownership
+    attributes:
+      label: Human ownership
+      description: State what you are prepared to clarify, verify, revise, or follow through during review.
+    validations:
+      required: true
+  - type: dropdown
+    id: ai_assistance
+    attributes:
+      label: Substantive AI assistance
+      description: Select the closest description of how AI was used for this challenge.
+      options:
+        - No substantive AI assistance
+        - Language or formatting only
+        - Analysis, code, research, or argument generation
+    validations:
+      required: true
+  - type: textarea
+    id: ai_details
+    attributes:
+      label: AI assistance details
+      description: If substantive AI assistance was used, state what it produced, which claims or sources you personally checked, and what remains uncertain.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: I searched existing issues for the same challenge.
+          required: true
+        - label: I identified a specific target rather than opening a general debate.
+          required: true
+        - label: I reviewed this submission and take responsibility for every claim it contains. AI output is not presented as evidence, expertise, or independent review.
+          required: true

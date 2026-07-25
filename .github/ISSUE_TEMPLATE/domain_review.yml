@@ -1,0 +1,102 @@
+name: Domain review
+description: Review a specific Pnyx artifact from relevant professional or operational experience
+title: "[Domain review]: "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for focused review of a specific artifact. Credentials may provide context, but the review must stand on explicit reasoning, evidence, and declared limits.
+  - type: input
+    id: target
+    attributes:
+      label: Artifact under review
+      description: Link or name the exact document, section, schema, implementation, simulation, ledger rule, or public artifact reviewed.
+      placeholder: docs/... §..., commit SHA, PR, or artifact hash
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Review domain
+      options:
+        - Accounting or audit
+        - Economics or mechanism design
+        - Law or public administration
+        - Software or systems architecture
+        - Security or privacy
+        - Simulation, statistics, or data science
+        - Accessibility or participation
+        - Public-sector operations or procurement
+        - Other relevant domain
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Relevant context
+      description: Briefly describe the experience, role, study, or operational context informing this review. Do not include unnecessary personal data.
+    validations:
+      required: true
+  - type: textarea
+    id: findings
+    attributes:
+      label: Findings
+      description: Identify the specific claims, rules, calculations, assumptions, or implementation choices you agree with, dispute, or cannot verify.
+    validations:
+      required: true
+  - type: textarea
+    id: basis
+    attributes:
+      label: Basis and provenance
+      description: Link sources, standards, calculations, observations, or professional reasoning. Separate facts, interpretation, and uncertainty.
+    validations:
+      required: true
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Limitations of this review
+      description: State what you did not inspect, what information was unavailable, and where another domain or accountable professional is required.
+    validations:
+      required: true
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: Recommended next action
+      description: Propose a correction, test, simulation, clarification, pilot, escalation, or further review that is proportionate to the finding.
+    validations:
+      required: true
+  - type: textarea
+    id: ownership
+    attributes:
+      label: Human ownership
+      description: State what you are prepared to clarify or revisit if maintainers or contributors ask focused follow-up questions.
+    validations:
+      required: true
+  - type: dropdown
+    id: ai_assistance
+    attributes:
+      label: Substantive AI assistance
+      description: Select the closest description of how AI was used for this review.
+      options:
+        - No substantive AI assistance
+        - Language or formatting only
+        - Analysis, code, research, or argument generation
+    validations:
+      required: true
+  - type: textarea
+    id: ai_details
+    attributes:
+      label: AI assistance details
+      description: If substantive AI assistance was used, state what it produced, which claims or sources you personally checked, and what remains uncertain.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: This review targets a specific artifact and is not a general political or philosophical debate.
+          required: true
+        - label: I distinguished professional judgment from formal certification or attestation.
+          required: true
+        - label: I reviewed this submission and take responsibility for every claim it contains. AI output is not presented as evidence, expertise, attestation, or independent review.
+          required: true

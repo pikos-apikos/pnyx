@@ -53,6 +53,22 @@ body:
     attributes:
       label: Civic or user impact
       description: Could this suppress participation, expose data, distort public artifacts, or misrepresent a decision state?
+  - type: dropdown
+    id: ai_assistance
+    attributes:
+      label: Substantive AI assistance
+      description: Select the closest description of how AI was used for this report.
+      options:
+        - No substantive AI assistance
+        - Language or formatting only
+        - Analysis, code, research, or argument generation
+    validations:
+      required: true
+  - type: textarea
+    id: ai_details
+    attributes:
+      label: AI assistance details
+      description: If substantive AI assistance was used, state what it produced, what you personally verified, and what remains uncertain.
   - type: checkboxes
     id: checks
     attributes:
@@ -61,4 +77,6 @@ body:
         - label: I searched existing issues for duplicates.
           required: true
         - label: This report does not contain secrets, private personal data, or an undisclosed vulnerability.
+          required: true
+        - label: I reviewed this submission and take responsibility for every claim it contains. AI output is not presented as evidence or independent review.
           required: true
