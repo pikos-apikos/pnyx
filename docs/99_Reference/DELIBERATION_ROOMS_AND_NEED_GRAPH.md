@@ -75,7 +75,7 @@ A Deliberation Room is not a generic chat channel.
 
 Each room has one canonical subject.
 
-The subject may be:
+The allowed subject types are:
 
 - a PNyx Proposal;
 - a public Decision;
@@ -89,7 +89,7 @@ The room must display the subject reference, version, public state, and relevant
 
 ### 4.2 A room does not create authority
 
-Discussion, reviews, and simulations may create public artifacts.
+The room permits discussion, reviews, and simulations to create public artifacts.
 
 These artifacts do not automatically:
 
@@ -261,7 +261,7 @@ A URL alone does not provide sufficient provenance.
 
 A `researcher` role may propose sources outside the ordinary source list.
 
-These sources may include:
+The permitted source types include:
 
 - academic papers;
 - theoretical essays;
@@ -447,7 +447,7 @@ Each Simulation Record must display these labels:
 - not a change to law;
 - not a change to Proposal state.
 
-Repeated runs may expose variance.
+Repeated runs expose variance when their outputs differ.
 
 Repeated runs do not create political support.
 
