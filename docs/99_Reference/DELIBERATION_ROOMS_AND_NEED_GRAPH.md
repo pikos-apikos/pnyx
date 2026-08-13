@@ -7,7 +7,7 @@
 
 The candidate rules and artifacts require later normative adoption.
 
-An implementation cannot claim protocol conformance from this document.
+An implementation must not claim protocol conformance from this document.
 
 ---
 
