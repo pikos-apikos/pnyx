@@ -3,101 +3,146 @@
 **Status:** Non-normative design proposal for human review  
 **Issue:** [#25 — Design review: deliberation rooms, reproducible AI reviews, simulations, and the need graph](https://github.com/pikos-apikos/pnyx/issues/25)  
 **Layer:** 99 — Reference  
-**Normative effect:** None. Candidate artifacts, relationships, and rules in this document require later reconciliation into the appropriate numbered layers before implementation can claim protocol conformance.
+**Normative effect:** None.
+
+The candidate rules and artifacts require later normative adoption.
+
+An implementation cannot claim protocol conformance from this document.
 
 ---
 
 ## 1. Purpose
 
-This document proposes a composition of existing PNyx ideas into a public deliberation environment for each civic subject.
+This document proposes one public deliberation room for each civic subject.
 
-The proposed environment should allow people to:
+Each room links to one proposal, decision, law, public document, dataset, or other canonical PNyx object.
 
-- discuss a proposal, decision, law, public document, or other canonical PNyx object;
-- submit an allowed public URL for bounded review;
-- inspect the exact public state used by an AI reviewer;
-- ask a frozen review to explain its prior result without silently changing history;
-- let a researcher introduce theoretical papers or websites into an explicitly exploratory simulation;
-- connect simulations to the needs, proposals, decisions, laws, and public functions they would affect if their assumptions became real;
-- see who funded the compute used to produce each run and under which terms.
+The room must support these functions if PNyx adopts this design:
 
-The design is not a replacement for the Civic Loop. It is a public reasoning surface that may produce candidate inputs for the loop.
+- admit approved public source packages for review;
+- preserve versioned AI review states;
+- accept theoretical sources through a separate researcher route;
+- keep simulation separate from evidence;
+- connect simulations to possible needs;
+- connect those needs to affected proposals, decisions, laws, and public functions;
+- disclose compute cost and funding.
 
----
+The design does not replace the Civic Loop.
 
-## 2. Existing Normative Ground
-
-This proposal builds on, but does not amend:
-
-- [GOVERNANCE.md](../10_Constitutional/GOVERNANCE.md): human sovereignty and recursive governance;
-- [PROTOCOL.md](../20_Protocol_Core/PROTOCOL.md): the proposal lifecycle;
-- [FUNDING_MODEL.md](../50_Economics/FUNDING_MODEL.md): money builds capacity but does not confer legitimacy;
-- [SKILLS.md](../60_Skills/SKILLS.md): bounded analytic roles and output contracts;
-- [EXECUTOR_MODEL.md](../60_Skills/EXECUTOR_MODEL.md): versioned, scoped, replaceable executors;
-- [AI_EPISTEMIC_RISK.md](../60_Skills/AI_EPISTEMIC_RISK.md): epistemic and provider-concentration risks;
-- [EVIDENCE_PACKET.md](../90_Information/EVIDENCE_PACKET.md): source classes, claim traceability, uncertainty, and provenance;
-- [PUBLIC_STORAGE_MODEL.md](../90_Information/PUBLIC_STORAGE_MODEL.md): public-file-first, content-addressed civic memory;
-- [AUDIT_LOG.md](../90_Information/AUDIT_LOG.md): append-only audit history.
-
-Where this document conflicts with a normative specification, the normative specification wins.
+The design provides candidate inputs to the Civic Loop.
 
 ---
 
-## 3. Design Principles
+## 2. Requirement Terms
 
-### 3.1 The room is anchored to a public object
+This document uses three modal terms:
 
-A deliberation room is not a generic chat channel. It is anchored to one canonical subject, such as:
+- `must` identifies required behavior in the proposed design;
+- `must not` identifies prohibited behavior in the proposed design;
+- `may` identifies permitted behavior in the proposed design.
 
-- a PNyx proposal;
-- a public decision;
+These terms define the proposal. They do not make the proposal normative.
+
+PNyx must complete human-approved reconciliation before these terms gain normative force.
+
+---
+
+## 3. Existing Normative Ground
+
+This proposal uses the following existing contracts:
+
+- [GOVERNANCE.md](../10_Constitutional/GOVERNANCE.md) defines human sovereignty and recursive governance.
+- [PROTOCOL.md](../20_Protocol_Core/PROTOCOL.md) defines the proposal lifecycle.
+- [FUNDING_MODEL.md](../50_Economics/FUNDING_MODEL.md) separates funding capacity from civic legitimacy.
+- [SKILLS.md](../60_Skills/SKILLS.md) defines bounded analytic roles and output contracts.
+- [EXECUTOR_MODEL.md](../60_Skills/EXECUTOR_MODEL.md) defines versioned, scoped, and replaceable Executors.
+- [AI_EPISTEMIC_RISK.md](../60_Skills/AI_EPISTEMIC_RISK.md) defines epistemic and provider-concentration risks.
+- [EVIDENCE_PACKET.md](../90_Information/EVIDENCE_PACKET.md) defines source classes, claim traceability, uncertainty, and provenance.
+- [PUBLIC_STORAGE_MODEL.md](../90_Information/PUBLIC_STORAGE_MODEL.md) defines public, content-addressed civic memory.
+- [AUDIT_LOG.md](../90_Information/AUDIT_LOG.md) defines append-only audit history.
+
+This proposal does not amend these contracts.
+
+A normative contract takes priority if this proposal conflicts with that contract.
+
+---
+
+## 4. Design Principles
+
+### 4.1 One room has one public subject
+
+A Deliberation Room is not a generic chat channel.
+
+Each room has one canonical subject.
+
+The subject may be:
+
+- a PNyx Proposal;
+- a public Decision;
 - an article of legislation;
 - an official public document;
-- a registered dataset;
-- a published evidence or research package.
+- a registered public dataset;
+- a published Evidence Package;
+- a published Research Package.
 
-The room must expose the subject reference, version, current public state, and relevant manifests.
+The room must display the subject reference, version, public state, and relevant manifests.
 
-### 3.2 The room does not manufacture authority
+### 4.2 A room does not create authority
 
-Discussion, reviews, and simulations may generate useful public artifacts. They do not automatically:
+Discussion, reviews, and simulations may create public artifacts.
+
+These artifacts do not automatically:
 
 - alter legislation;
-- amend a proposal;
+- amend a Proposal;
 - change civic standing;
 - create votes;
 - satisfy a protocol gate;
-- become evidence merely through repetition.
+- become evidence through repetition.
 
-Promotion into the Civic Loop requires the applicable protocol process.
+The applicable protocol must approve promotion into the Civic Loop.
 
-### 3.3 Public reasoning configuration is part of the public record
+### 4.3 Public reasoning configuration is public evidence
 
-For a civic AI review, prompts and inference settings are not private implementation details. The review must publish the reasoning contract that shaped the output.
+Prompts and inference settings affect civic AI output.
 
-Credentials, private personal data, and unrelated infrastructure secrets remain excluded. Their exclusion does not justify withholding the prompt, model configuration, source scope, tool scope, or material generation settings.
+Each AI Review Snapshot must publish the reasoning contract that produced its output.
 
-### 3.4 Silence is a valid agent action
+The public record must include prompts, material settings, source scope, and tool scope.
 
-An AI participant need not answer every message. It may remain silent when:
+The public record must exclude credentials, private personal data, and unrelated infrastructure secrets.
 
-- humans are already resolving the point;
-- it has no material addition;
-- the request falls outside its mandate;
-- a response would require a new run that has not been authorized or funded;
-- the available state is insufficient.
+These exclusions must not hide any part of the reasoning contract.
 
-The AI moderates its own participation through bounded presence, not assumed authority.
+### 4.4 Agent silence is valid
 
-### 3.5 History is append-only
+An AI participant does not need to answer every message.
 
-A historical review does not silently update itself. New evidence, prompts, settings, models, or tools create a new state linked to the old one.
+The AI participant may remain silent in these conditions:
+
+- people already resolve the point;
+- the AI participant has no material information to add;
+- the request is outside the assigned mandate;
+- the answer requires an unauthorized or unfunded new run;
+- the available review state is insufficient.
+
+The AI participant has bounded presence. The AI participant has no assumed authority.
+
+### 4.5 Public history is append-only
+
+A historical review must not update itself.
+
+A new source creates a new review state.
+
+A new prompt, setting, model, tool, or task also creates a new review state.
+
+The new state must link to the previous state.
 
 ---
 
-## 4. Deliberation Room
+## 5. Deliberation Room
 
-A candidate `DeliberationRoom` binds together:
+The proposed `DeliberationRoom` artifact contains:
 
 - `room_id`;
 - `subject_ref`;
@@ -114,38 +159,46 @@ A candidate `DeliberationRoom` binds together:
 - `created_at`;
 - `audit_ref`.
 
-The room may contain ordinary conversation, but any statement that is intended to affect public judgment should be promoted into a typed, citable artifact.
+A room may contain ordinary conversation.
 
-Message volume is not a measure of standing or support.
+A statement must become a typed public artifact before the statement affects public judgment.
+
+The artifact must be citable.
+
+Message volume is not evidence of standing or support.
 
 ---
 
-## 5. Controlled URL Review Surface
+## 6. Controlled URL Review
 
-### 5.1 No unrestricted browsing
+### 6.1 No unrestricted search
 
-A review executor does not receive an open browser or a request such as "search the web."
+A Review Executor must not use unrestricted web search.
 
-A person may submit a URL. PNyx must first decide whether the URL can become a reviewable public source.
+A Review Executor must not use Google Search.
 
-The candidate flow is:
+A person may submit one URL for review.
+
+PNyx must apply this process:
 
 ```text
 submitted URL
   -> source-class policy
-  -> retrieval by a controlled fetcher
+  -> controlled retrieval
   -> canonical URL and issuer verification
   -> immutable snapshot or content capture
-  -> hash and provenance
+  -> content hash and provenance
   -> admitted source package
   -> bounded review task
 ```
 
-The executor receives the admitted package, not an unrestricted web session.
+The Review Executor receives the admitted source package.
 
-### 5.2 Ordinary allowed source classes
+The Review Executor does not receive an unrestricted browser session.
 
-An initial ordinary-review allowlist may include:
+### 6.2 Ordinary source classes
+
+The initial ordinary-review source list contains:
 
 - `pnyx_public_object`;
 - `official_legislation`;
@@ -153,188 +206,281 @@ An initial ordinary-review allowlist may include:
 - `official_public_document`;
 - `registered_public_dataset`.
 
-Admission should depend on a public source registry, canonical-domain rules, and source-class-specific validation.
+A public Source Registry must control admission.
 
-### 5.3 Rejection behavior
+Canonical-domain rules must verify the source issuer.
 
-If a URL is not currently allowed, the system must not open it secretly.
+Source-class rules must verify each source.
 
-It should return a visible result such as:
+### 6.3 Rejected URLs
 
-- source class not allowed;
-- issuer not verified;
-- content not retrievable;
-- snapshot not stable;
-- hash or provenance failure;
-- researcher route required.
+PNyx must not open a rejected URL through a hidden process.
 
-A separate, challengeable request may propose adding a source or source class to the registry.
+PNyx must publish one rejection result.
 
-### 5.4 Source snapshot
+The result must identify one or more reason codes:
 
-A candidate `SourceSnapshot` may include:
+- source class is not allowed;
+- issuer is not verified;
+- content retrieval failed;
+- snapshot is not stable;
+- hash verification failed;
+- provenance verification failed;
+- researcher route is required.
 
-- original and canonical URL;
+A separate request may propose a new source or source class.
+
+The request must be public and challengeable.
+
+### 6.4 Source Snapshot
+
+The proposed `SourceSnapshot` artifact contains:
+
+- original URL;
+- canonical URL;
 - source class;
 - issuer or author;
 - retrieval time;
-- publication or version date;
+- publication date or version date;
 - content hash;
 - captured content or archive reference;
 - language;
 - jurisdiction;
-- validation method and result;
-- redactions and reasons;
+- validation method;
+- validation result;
+- redactions;
+- redaction reasons;
 - superseded snapshot references;
-- admission policy version.
+- admission-policy version.
 
-A URL alone is not sufficient provenance.
+A URL alone does not provide sufficient provenance.
 
 ---
 
-## 6. Researcher Route
+## 7. Researcher Route
 
-A `researcher` role may propose sources that are not part of the ordinary official-source allowlist, including:
+A `researcher` role may propose sources outside the ordinary source list.
+
+These sources may include:
 
 - academic papers;
 - theoretical essays;
 - research-institution publications;
-- standards and technical guidance;
+- standards;
+- technical guidance;
 - relevant public websites;
-- unconventional but clearly identified theoretical material.
+- unconventional theoretical material with clear identification.
 
-These sources enter a `ResearchPackage`, not the ordinary evidence channel.
+PNyx must place these sources in a Research Package.
 
-A candidate `ResearchPackage` should declare:
+PNyx must not place these sources directly in the official evidence channel.
 
-- the source snapshots;
-- why each source is relevant;
-- authorship and institutional origin;
-- publication and retrieval dates;
+The proposed `ResearchPackage` artifact contains:
+
+- source snapshots;
+- relevance statement for each source;
+- authorship;
+- institutional origin;
+- publication date;
+- retrieval date;
 - material claims;
-- known limitations and disputes;
-- the question the package is intended to explore;
-- whether the package is theoretical, empirical, mixed, or speculative;
+- known limitations;
+- known disputes;
+- exploration question;
+- source category;
 - conflicts of interest;
-- package version and hash.
+- package version;
+- package hash.
 
-Research admission means "suitable for bounded exploration." It does not mean "official," "true," or "sufficient for public decision."
+The source category must use one of these values:
+
+- `theoretical`;
+- `empirical`;
+- `mixed`;
+- `speculative`.
+
+Research admission means that the source is available for bounded exploration.
+
+Research admission does not mean that the source is official.
+
+Research admission does not prove that the source is true.
+
+Research admission does not make the source sufficient for a public Decision.
 
 ---
 
-## 7. Reproducible AI Review Snapshot
+## 8. AI Review Snapshot
 
-### 7.1 Public execution state
+### 8.1 Public execution state
 
-Every civic AI review should produce an immutable `ReviewSnapshot` containing at least:
+Every civic AI review must produce one immutable `ReviewSnapshot`.
 
-- review ID and version;
-- subject and source-package hashes;
-- skill and role version;
-- executor ID and class;
-- model provider, model name, version or dated identifier;
-- complete public system, role, and task prompts;
-- prompt-template versions and rendered prompt;
-- inference settings, including material sampling and context settings;
-- allowed tools and tool-policy version;
+The Review Snapshot must contain:
+
+- review ID;
+- review version;
+- subject hash;
+- source-package hashes;
+- Skill ID;
+- Skill version;
+- role version;
+- Executor ID;
+- Executor class;
+- model provider;
+- model name;
+- model version or dated identifier;
+- complete system prompt;
+- complete role prompt;
+- complete task prompt;
+- prompt-template versions;
+- rendered prompt;
+- material inference settings;
+- allowed tools;
+- tool-policy version;
 - exact admitted inputs;
-- output and structured claims;
-- citations, unknowns, dissent, and limitations;
-- validation and review results;
+- structured output;
+- material claims;
+- citations;
+- unknowns;
+- dissent;
+- limitations;
+- validation results;
+- review results;
 - timestamps;
-- token, accelerator-time, or other available usage measures;
-- declared monetary cost or valuation method;
-- compute funder and funding terms;
-- content hash and audit references.
+- measured usage;
+- monetary cost or valuation method;
+- compute funder;
+- funding terms;
+- content hash;
+- audit references.
 
-A model name without its prompts, inputs, settings, and tool boundary is not a reproducible public review record.
+A model name alone does not identify a reproducible review.
 
-### 7.2 What remains private
+A reproducible review requires prompts, inputs, settings, tools, and output.
 
-The public record should not expose:
+### 8.2 Excluded data
 
-- credentials or API keys;
-- private personal data that the protocol is not allowed to publish;
+The public record must not expose:
+
+- credentials;
+- API keys;
+- private personal data;
 - unrelated infrastructure secrets.
 
-These exclusions must be declared. They must not be used to hide the reasoning contract or material settings.
+The Review Snapshot must declare each exclusion.
 
-### 7.3 Calling a historical reviewer into the room
+The declaration must state the exclusion reason.
 
-A room may call a prior AI reviewer by its snapshot:
+An exclusion must not hide the reasoning contract.
 
-> Explain why Review #42/v1 assigned high risk to Article 7, using only the state available to that review.
+An exclusion must not hide material settings or source scope.
 
-The response should become a linked `ReviewExplanation` artifact. It must:
+### 8.3 Historical Review Explanation
 
-- name the snapshot it explains;
-- remain within the snapshot's admitted sources and mandate;
-- identify claims that cannot be answered from that state;
-- avoid presenting current knowledge as historical knowledge;
-- disclose that a new inference occurred and record its own compute provenance.
+A room may request an explanation from one historical Review Snapshot.
 
-If a participant adds a new source or changes the task, prompt, settings, tools, or model, PNyx creates a new review state. It does not mutate Review #42/v1.
+Example request:
+
+> Explain why Review #42/v1 assigned high risk to Article 7. Use only the state of Review #42/v1.
+
+The answer must create a linked `ReviewExplanation` artifact.
+
+The Review Explanation must:
+
+- identify the Review Snapshot;
+- use only the admitted sources of that Review Snapshot;
+- remain inside the original mandate;
+- identify questions that the historical state does not answer;
+- keep current knowledge separate from historical knowledge;
+- disclose the new inference;
+- record new compute provenance.
+
+A new source requires a new Review Snapshot.
+
+A changed task, prompt, setting, tool, or model also requires a new Review Snapshot.
+
+PNyx must not mutate Review #42/v1.
 
 ---
 
-## 8. Simulation
+## 9. Simulation
 
-### 8.1 Role
+### 9.1 Function
 
-A simulation explores conditional consequences. It does not decide what is true and does not exercise institutional authority.
+A Simulation explores conditional consequences.
 
-A candidate `SimulationRecord` should include:
+A Simulation does not determine truth.
+
+A Simulation does not exercise institutional authority.
+
+The proposed `SimulationRecord` artifact contains:
 
 - simulation question;
 - subject references;
-- input evidence package;
-- research package, if any;
+- input Evidence Package;
+- Research Package;
 - explicit assumptions;
 - scenario boundaries;
-- model and prompt snapshot;
+- model snapshot;
+- prompt snapshot;
 - method;
 - outcomes;
-- sensitivity to assumptions;
+- assumption sensitivity;
 - failure modes;
-- claims the simulation cannot support;
+- unsupported claim classes;
 - affected-object candidates;
-- compute and funding declaration;
-- version, hash, and audit references.
+- compute declaration;
+- funding declaration;
+- version;
+- hash;
+- audit references.
 
-### 8.2 Epistemic label
+### 9.2 Epistemic label
 
-Simulation output must remain visibly labeled:
+Each Simulation Record must display these labels:
 
 - exploratory;
 - conditional;
 - not observed evidence;
 - not a vote;
-- not an authorized decision;
-- not a change to law or proposal state.
+- not an authorized Decision;
+- not a change to law;
+- not a change to Proposal state.
 
-Running the same scenario one hundred times may improve exploration or reveal variance. It does not create one hundred units of political support.
+Repeated runs may expose variance.
+
+Repeated runs do not create political support.
+
+One hundred Simulation Records do not create one hundred votes.
 
 ---
 
-## 9. The Need Graph
+## 10. Need Graph
 
-### 9.1 Purpose
+### 10.1 Purpose
 
-The need graph records how reality, assumptions, and proposed action relate.
+The Need Graph records relationships between reality, assumptions, needs, and proposed action.
 
-It should let a person ask backward:
+The Need Graph supports backward review.
 
-- Why is this proposal considered necessary?
-- Which observed or conditional need produced it?
-- Which sources, simulations, and assumptions support that need?
+A backward review answers these questions:
 
-It should also let a person ask forward:
+- Why is this Proposal necessary?
+- Which observed or conditional need produced this Proposal?
+- Which sources, Simulations, and assumptions support this need?
 
-- If this scenario becomes real, which proposals, decisions, laws, or public functions should be reconsidered?
-- Which actions might mitigate the resulting need?
+The Need Graph also supports forward review.
+
+A forward review answers these questions:
+
+- Which objects require review if this scenario becomes real?
+- Which Proposals, Decisions, laws, or public functions are affected?
+- Which actions mitigate the need?
 - Which dependencies block action?
 
-### 9.2 Candidate node types
+### 10.2 Node types
+
+The proposed node types are:
 
 - `observed_condition`;
 - `hypothesis`;
@@ -350,7 +496,9 @@ It should also let a person ask forward:
 - `expected_outcome`;
 - `observed_outcome`.
 
-### 9.3 Candidate relationship types
+### 10.3 Relationship types
+
+The proposed relationship types are:
 
 - `tests`;
 - `reveals_if_true`;
@@ -366,220 +514,287 @@ It should also let a person ask forward:
 - `revises`;
 - `derived_from`.
 
-Each edge should record:
+Each `NeedGraphEdge` must contain:
 
-- source and target;
+- source node;
+- target node;
 - relationship type;
-- assertion author or executor;
-- basis and supporting artifact references;
-- epistemic status;
-- confidence inputs rather than ungrounded confidence;
+- assertion author or Executor;
+- basis;
+- supporting artifact references;
+- epistemic state;
+- confidence inputs;
 - creation time;
 - version;
 - challenge status;
 - supersession history.
 
-### 9.4 Conditional-to-observed transition
+The edge must not use ungrounded confidence.
 
-A conditional need must not become an observed need because a model repeats it.
+### 10.4 Conditional Need and Observed Need
 
-The transition requires an admitted public evidentiary event under a future normative rule. The event should:
+A model statement must not change a Conditional Need into an Observed Need.
 
-1. identify the previously conditional need;
-2. cite new evidence;
-3. state which assumptions were confirmed, weakened, or falsified;
-4. pass the required validation and challenge route;
-5. preserve the old state;
-6. create a new observed or revised need node.
+An admitted public evidence event must support this change.
 
-### 9.5 Waking affected proposals
+The evidence event must:
 
-When new evidence changes a need's epistemic status, PNyx may notify or queue connected proposals for reconsideration.
+1. identify the previous Conditional Need;
+2. cite the new evidence;
+3. identify confirmed assumptions;
+4. identify weakened assumptions;
+5. identify falsified assumptions;
+6. pass the required validation route;
+7. pass the required challenge route;
+8. preserve the old state;
+9. create a new or revised Need Node.
 
-"Wake" should mean:
+### 10.5 Proposal notification
 
-- surface the relevant change;
-- identify affected objects;
-- request review under the applicable protocol;
-- preserve human judgment.
+A change in epistemic state may notify connected Proposals.
 
-It must not mean automatic amendment, automatic approval, or automatic execution.
+PNyx may also place connected Proposals in a review queue.
+
+A notification must identify:
+
+- the changed Need Node;
+- the new evidence;
+- the affected objects;
+- the required review route.
+
+A notification does not amend a Proposal.
+
+A notification does not approve a Proposal.
+
+A notification does not execute a Proposal.
+
+Human judgment remains necessary.
 
 ---
 
-## 10. Compute Cost and Funding Hypotheses
+## 11. Compute Cost and Funding
 
-### 10.1 Compute is a material input
+### 11.1 Compute is a material input
 
-Research, review explanation, replication, and simulation consume compute. Even when the user is not directly charged, the cost is borne by someone.
+Research, review explanation, replication, and simulation consume compute.
 
-The public record should therefore distinguish:
+A person or organization pays each compute cost.
 
-- compute usage;
+The public record must distinguish:
+
+- measured usage;
 - monetary charge;
-- estimated or in-kind value;
+- estimated value;
+- in-kind value;
 - funding source;
 - subsidy;
-- quota or budget;
+- quota;
+- budget;
 - provider conditions;
-- termination or withdrawal risk.
+- termination risk;
+- withdrawal risk.
 
-### 10.2 Subscription is one hypothesis
+### 11.2 Subscription is one hypothesis
 
-A subscription or bounded inference budget may be a reasonable way to finance optional exploration because inference has real cost.
+A subscription or bounded inference budget is one candidate cost-recovery model.
 
-At this stage, subscription remains a hypothesis. It is not:
+PNyx has not adopted subscription as its business model.
+
+A subscription is not:
 
 - a constitutional requirement;
 - a condition of civic standing;
-- a decision-right purchase;
-- the only possible sustainability model.
+- a condition of public participation;
+- a purchase of Decision rights;
+- the only sustainability model.
 
-A later pilot should test whether subscription can support compute without turning ability to pay into control over the public agenda.
+A pilot must test the effect of subscription on public-agenda control.
 
-### 10.3 Alternative funding hypotheses
+The pilot must test whether payment creates unequal control.
 
-Candidate alternatives or complements include:
+### 11.3 Alternative funding hypotheses
+
+The design compares these funding models:
 
 - small recurring member contributions;
-- community or public compute pools;
+- community compute pools;
+- public compute pools;
 - grants;
 - institutional sponsorship;
-- universities or public-interest organizations;
-- compute supplied or funded by AI labs;
-- local or federated infrastructure;
-- mixed funding with explicit treasury partitions.
+- university support;
+- public-interest organization support;
+- AI lab support;
+- local infrastructure;
+- federated infrastructure;
+- mixed funding.
 
-The funding model may vary by environment and over time.
+PNyx may use different funding models in different environments.
 
-### 10.4 Lab-funded compute changes the economic question
+PNyx may change a funding model after public review.
 
-If AI labs provide or fund compute, direct subscription pressure may decrease or disappear for the subsidized surface.
+### 11.4 Lab-funded compute
 
-That does not make compute costless. It changes:
+Lab-funded compute changes who bears the cost.
 
-- who bears the cost;
-- who controls continued availability;
+Lab-funded compute does not remove the cost.
+
+Lab-funded compute does not remove the dependency.
+
+Lab support changes these risks:
+
+- provider control;
 - provider concentration;
-- model and policy dependence;
-- portability requirements;
-- withdrawal risk;
-- the possibility of explicit or implicit conditions.
+- model dependence;
+- policy dependence;
+- service withdrawal;
+- model withdrawal;
+- portability;
+- replacement cost;
+- explicit conditions;
+- implicit conditions.
 
-Lab-supplied compute should be recorded as in-kind or sponsored funding with:
+PNyx must record lab support as sponsored or in-kind funding.
+
+The public record must contain:
 
 - provider identity;
-- valuation method or declared unknown value;
-- covered models and workloads;
-- quotas and rate limits;
-- conditions;
+- valuation method;
+- declared unknown value when valuation is unavailable;
+- covered models;
+- covered workloads;
+- quotas;
+- rate limits;
+- funding conditions;
 - data-use terms;
-- duration and renewal terms;
+- duration;
+- renewal terms;
 - termination rights;
-- portability and replacement plan;
+- portability plan;
+- replacement plan;
 - concentration indicators.
 
-A lab may support public capacity. It may not buy classification outcomes, routing, panel composition, proposal success, review wording, or governance authority.
+A lab may support public capacity.
 
-### 10.5 Public access and public return
+A lab must not buy:
 
-A candidate policy for testing is:
+- classification outcomes;
+- routing outcomes;
+- Panel composition;
+- Proposal success;
+- review wording;
+- governance authority.
 
-- reading public subjects, sources, and already published reviews remains open;
-- basic civic participation does not depend on payment;
-- new compute-intensive exploration consumes a declared budget;
-- publicly released paid or sponsored runs become reusable public artifacts;
-- duplicate work may reuse cached public state;
-- genuinely new questions, sources, models, or settings create new metered runs.
+### 11.5 Public access and public return
 
-This tests the principle:
+The proposed access policy contains these rules:
 
-> Funding may purchase computation. It may not purchase sovereignty.
+- Reading public subjects must remain open.
+- Reading admitted public sources must remain open.
+- Reading published AI reviews must remain open.
+- Basic civic participation must not depend on payment.
+- New compute-intensive exploration consumes a declared budget.
+- A published paid run becomes a reusable public artifact.
+- A published sponsored run becomes a reusable public artifact.
+- Duplicate work may reuse cached public state.
+- A new question creates a new metered run.
+- A new source, model, prompt, tool, or setting creates a new metered run.
 
-### 10.6 Candidate compute funding declaration
+> Funding may purchase computation. Funding must not purchase sovereignty.
 
-A `ComputeFundingDeclaration` may include:
+### 11.6 Compute Funding Declaration
+
+The proposed `ComputeFundingDeclaration` artifact contains:
 
 - run reference;
 - measured usage;
 - pricing basis;
 - charged amount;
 - estimated in-kind value;
-- payer or sponsor;
-- treasury partition;
+- payer;
+- sponsor;
+- Treasury partition;
 - subsidy amount or band;
 - provider;
-- conditions;
+- funding conditions;
 - expiry;
-- concentration and dependency flags;
+- concentration flags;
+- dependency flags;
 - portability status;
 - audit reference.
 
 ---
 
-## 11. Candidate Artifact Inventory
+## 12. Candidate Artifacts
 
-This reference draft proposes the following artifacts for later review:
+This proposal identifies these candidate artifacts:
 
-| Candidate artifact | Purpose | Likely normative home if adopted |
+| Candidate artifact | Purpose | Proposed normative layer |
 |---|---|---|
-| `DeliberationRoom` | Bind discussion and public artifacts to one subject | Participation / Runtime |
-| `SourceSnapshot` | Stabilize an allowed URL with provenance and hash | Information |
-| `ResearchPackage` | Admit theoretical material for exploration | Skills / Information |
-| `ReviewSnapshot` | Preserve reproducible AI execution state | Skills / Information |
-| `ReviewExplanation` | Answer from a frozen review state | Skills / Information |
-| `SimulationRecord` | Preserve assumptions, method, and conditional outcomes | Skills / Information |
-| `NeedNode` | Represent conditional or observed need | Information |
-| `NeedGraphEdge` | Express typed causal or institutional relationships | Information |
-| `ComputeFundingDeclaration` | Expose compute cost, payer, subsidy, and dependency | Economics / Information |
+| `DeliberationRoom` | Links discussion and public artifacts to one subject | Participation or Runtime |
+| `SourceSnapshot` | Preserves an admitted URL with a hash and provenance | Information |
+| `ResearchPackage` | Admits theoretical material for exploration | Skills or Information |
+| `ReviewSnapshot` | Preserves reproducible AI execution state | Skills or Information |
+| `ReviewExplanation` | Explains one frozen review state | Skills or Information |
+| `SimulationRecord` | Preserves assumptions, method, and conditional outcomes | Skills or Information |
+| `NeedNode` | Represents a Conditional Need or Observed Need | Information |
+| `NeedGraphEdge` | Records one typed relationship | Information |
+| `ComputeFundingDeclaration` | Exposes compute cost, payer, subsidy, and dependency | Economics or Information |
 
-This table is not a schema registry. It is a decision surface.
+This table is not a Schema Registry.
+
+Human review must select the accepted artifacts and their normative layers.
 
 ---
 
-## 12. Threats and Failure Modes
+## 13. Threats and Failure Modes
 
-Review should specifically test:
+The design review must examine:
 
-- prompt injection inside admitted sources;
-- source-registry capture;
-- misleading canonical URLs or mutable upstream pages;
-- researcher laundering advocacy into "evidence";
-- simulation presented as prediction or fact;
-- repeated simulations used to monopolize public attention;
-- hidden prompt or setting drift;
-- model-version ambiguity;
+- prompt injection in an admitted source;
+- capture of the Source Registry;
+- a misleading canonical URL;
+- mutable upstream content;
+- advocacy presented as evidence;
+- a Simulation presented as fact;
+- repeated Simulations that capture public attention;
+- hidden prompt drift;
+- hidden setting drift;
+- ambiguous model versions;
 - provider monoculture;
-- lab subsidy becoming structural dependence;
-- paid compute becoming agenda priority;
-- cached review state being mistaken for current knowledge;
-- automatic proposal wake-up becoming automatic agenda control;
-- need-graph edges presenting contested causality as settled fact;
-- privacy leakage through public prompts or captured inputs;
-- cost disclosure that is too vague to reveal dependence.
+- structural dependence on lab support;
+- paid compute that controls agenda priority;
+- old review state presented as current knowledge;
+- automatic notification that controls the agenda;
+- contested causality presented as fact;
+- private data in public prompts;
+- private data in captured inputs;
+- vague cost disclosure;
+- hidden funding conditions.
 
 ---
 
-## 13. Pilot Questions
+## 14. Pilot Questions
 
-A bounded prototype should answer:
+A bounded pilot must answer these questions:
 
-1. Can a participant submit an allowed URL and understand why it was admitted or rejected?
-2. Can another person reproduce the material state of an AI review?
-3. Can a historical reviewer explain its output without importing later knowledge?
-4. Can a researcher package a theoretical source without it being confused with official evidence?
-5. Can the UI keep simulation, conditional need, and observed need visibly distinct?
-6. Can users traverse from a proposal back to its need and forward to affected institutional objects?
-7. Does waking a proposal help review without creating automatic authority?
-8. Does public compute-cost disclosure remain intelligible?
-9. Do subscription, public-pool, local-compute, and lab-sponsored scenarios produce different dependency risks?
-10. Can the system survive withdrawal of its largest compute sponsor?
+1. Does URL admission publish a clear approval or rejection reason?
+2. Does each AI Review Snapshot preserve its complete material state?
+3. Does a Review Explanation remain inside its historical state?
+4. Does a Research Package remain separate from official evidence?
+5. Does the interface distinguish Simulation, Conditional Need, and Observed Need?
+6. Does the Need Graph support backward and forward review?
+7. Does Proposal notification avoid automatic authority?
+8. Does compute-cost disclosure remain clear to the public?
+9. Do funding models expose different dependency risks?
+10. Does the system continue after withdrawal of its largest compute sponsor?
 
 ---
 
-## 14. Required Reconciliation Before Normative Adoption
+## 15. Required Reconciliation
 
-If this design is accepted in principle, a later normative change must audit at least:
+Normative adoption requires a human-approved change to the applicable specifications.
+
+The reconciliation must audit these files:
 
 - `20_Protocol_Core/PROTOCOL.md`;
 - `45_Participation/PARTICIPATION_MODEL.md`;
@@ -602,16 +817,20 @@ If this design is accepted in principle, a later normative change must audit at 
 - `90_Information/AUDIT_LOG.md`;
 - `90_Information/AUDIT_VIEWS.md`.
 
-No implementation should treat candidate artifacts in this document as canonical before that reconciliation is approved.
+An implementation must not treat these candidate artifacts as canonical before normative adoption.
 
 ---
 
-## 15. Closing Principle
+## 16. Closing Principle
 
-A simulation should be free to explore far beyond current institutional reality.
+A Simulation may explore conditions beyond current institutional reality.
 
-The path from exploration to power should remain difficult, public, and governed.
+The path from exploration to power must remain difficult, public, and governed.
 
-The need graph preserves that distinction: it lets society remember what might matter, connect it to what would be affected, and revisit it when reality supplies evidence.
+The Need Graph records possible needs and affected public objects.
 
-Compute funding determines how much exploration is possible. It must never determine whose conclusions become sovereign.
+Public evidence changes a possible need into an observed need.
+
+Compute funding controls the available exploration capacity.
+
+Compute funding must never control civic judgment.
