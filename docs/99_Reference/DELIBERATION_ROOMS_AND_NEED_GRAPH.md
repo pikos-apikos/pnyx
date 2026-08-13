@@ -23,8 +23,8 @@ The room must support these functions if PNyx adopts this design:
 - preserve versioned AI review states;
 - accept theoretical sources through a separate researcher route;
 - keep simulation separate from evidence;
-- connect simulations to possible needs;
-- connect those needs to affected proposals, decisions, laws, and public functions;
+- connect each Simulation to a Conditional Need;
+- connect each Conditional Need to affected Proposals, Decisions, laws, and public functions;
 - disclose compute cost and funding.
 
 The design does not replace the Civic Loop.
@@ -41,9 +41,9 @@ This document uses three modal terms:
 - `must not` identifies prohibited behavior in the proposed design;
 - `may` identifies permitted behavior in the proposed design.
 
-These terms define the proposal. They do not make the proposal normative.
+The three modal terms define the proposal. The terms do not make the proposal normative.
 
-PNyx must complete human-approved reconciliation before these terms gain normative force.
+The terms gain normative force only after human-approved reconciliation.
 
 ---
 
@@ -466,14 +466,14 @@ The Need Graph supports backward review.
 A backward review answers these questions:
 
 - Why is this Proposal necessary?
-- Which observed or conditional need produced this Proposal?
-- Which sources, Simulations, and assumptions support this need?
+- Which Observed Need or Conditional Need produced the Proposal?
+- Which sources, Simulations, and assumptions support the Need Node?
 
 The Need Graph also supports forward review.
 
 A forward review answers these questions:
 
-- Which objects require review if this scenario becomes real?
+- Which objects require review if the Simulation scenario becomes real?
 - Which Proposals, Decisions, laws, or public functions are affected?
 - Which actions mitigate the need?
 - Which dependencies block action?
@@ -829,7 +829,7 @@ The path from exploration to power must remain difficult, public, and governed.
 
 The Need Graph records possible needs and affected public objects.
 
-Public evidence changes a possible need into an observed need.
+An admitted public evidence event changes a Conditional Need into an Observed Need.
 
 Compute funding controls the available exploration capacity.
 
