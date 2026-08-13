@@ -269,7 +269,7 @@ This documentation follows a logical dependency chain. Read in numerical order (
 | **META_CRITIQUE.md** | Synthesis and meta-analysis of all critiques | Meta-analysis |
 | **CORE_V02_RECONCILIATION.md** | Decision record: reconciliation with external "PNyx Core v0.2" draft | Decision record |
 | **CORE_V03_RECONCILIATION.md** | Decision record: reconciliation with external "PNyx Core v0.3" draft — introduces participation layer, two new canonical states, economic invariants, 14 new artifact types | Decision record |
-| **DELIBERATION_ROOMS_AND_NEED_GRAPH.md** | Proposal for subject-bound deliberation rooms, controlled URL review, reproducible AI review snapshots, simulations, a need graph, and compute-funding hypotheses | Non-normative design proposal |
+| **DELIBERATION_ROOMS_AND_NEED_GRAPH.md** | Proposal for Deliberation Rooms, controlled URL review, AI Review Snapshots, Simulations, a Need Graph, and compute-funding hypotheses | Non-normative design proposal |
 
 **Cross-references:** Critiques reference all layers. Implementation references 70_Bootstrap, 80_Runtime.
 
@@ -375,8 +375,13 @@ This documentation follows a logical dependency chain. Read in numerical order (
 
 **Added:**
 - `99_Reference/DELIBERATION_ROOMS_AND_NEED_GRAPH.md` as a non-normative review proposal.
-- Subject-bound deliberation rooms, controlled URL admission, public AI prompts and settings, frozen review explanations, researcher-supplied simulation packages, and a graph from hypotheses to needs and affected civic objects.
-- Compute funding as an explicit open design question: subscription, public pools, local infrastructure, grants, and lab-sponsored compute remain alternative, revisable hypotheses. Funding buys computation, not civic authority.
+- Added subject-bound Deliberation Rooms and controlled URL admission.
+- Added public AI prompts and material settings.
+- Added frozen Review Explanations and Research Packages.
+- Added Simulations and a graph from hypotheses to needs and affected civic objects.
+- Added compute funding as an open design question.
+- Subscription, public pools, local infrastructure, grants, and lab support remain separate hypotheses.
+- Funding buys computation. Funding does not buy civic authority.
 
 **Normative status:**
 - No runtime state, schema, artifact, permission, or funding rule is adopted by this reference draft.
