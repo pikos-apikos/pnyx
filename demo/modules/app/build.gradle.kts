@@ -1,7 +1,7 @@
 plugins {
     id("org.springframework.boot")
     id("io.spring.dependency-management")
-    id("org.jooq.jooq-codegen-gradle") version "3.21.6"
+    id("org.jooq.jooq-codegen-gradle") version "3.21.7"
 }
 
 dependencies {
