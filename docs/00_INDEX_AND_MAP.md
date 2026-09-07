@@ -1,8 +1,8 @@
 # PNyx Documentation Index and Map
 
 **System Version:** 2.3 (Post-Core v0.3 Reconciliation — Participation Layer)  
-**Last Updated:** July 2026  
-**Total Documents:** 60  
+**Last Updated:** August 2026  
+**Total Documents:** 61  
 
 ---
 
@@ -269,6 +269,7 @@ This documentation follows a logical dependency chain. Read in numerical order (
 | **META_CRITIQUE.md** | Synthesis and meta-analysis of all critiques | Meta-analysis |
 | **CORE_V02_RECONCILIATION.md** | Decision record: reconciliation with external "PNyx Core v0.2" draft | Decision record |
 | **CORE_V03_RECONCILIATION.md** | Decision record: reconciliation with external "PNyx Core v0.3" draft — introduces participation layer, two new canonical states, economic invariants, 14 new artifact types | Decision record |
+| **DELIBERATION_ROOMS_AND_NEED_GRAPH.md** | Proposal for Deliberation Rooms, controlled URL review, AI Review Snapshots, Simulations, a Need Graph, and compute-funding hypotheses | Non-normative design proposal |
 
 **Cross-references:** Critiques reference all layers. Implementation references 70_Bootstrap, 80_Runtime.
 
@@ -362,12 +363,29 @@ This documentation follows a logical dependency chain. Read in numerical order (
     ├── PAPER_ARCHITECTURE_Critique.md
     ├── META_CRITIQUE.md
     ├── CORE_V02_RECONCILIATION.md
-    └── CORE_V03_RECONCILIATION.md
+    ├── CORE_V03_RECONCILIATION.md
+    └── DELIBERATION_ROOMS_AND_NEED_GRAPH.md
 ```
 
 ---
 
 ## Change Log
+
+### Unreleased design review (August 2026) — Deliberation rooms and need graph
+
+**Added:**
+- `99_Reference/DELIBERATION_ROOMS_AND_NEED_GRAPH.md` as a non-normative review proposal.
+- Added subject-bound Deliberation Rooms and controlled URL admission.
+- Added public AI prompts and material settings.
+- Added frozen Review Explanations and Research Packages.
+- Added Simulations and a graph from hypotheses to needs and affected civic objects.
+- Added compute funding as an open design question.
+- Subscription, public pools, local infrastructure, grants, and lab support remain separate hypotheses.
+- Funding buys computation. Funding does not buy civic authority.
+
+**Normative status:**
+- No runtime state, schema, artifact, permission, or funding rule is adopted by this reference draft.
+- Normative adoption requires later human-approved reconciliation across the coupled protocol, economics, skills, runtime, and information documents.
 
 ### Version 2.3 (July 2026) - Core v0.3 Reconciliation — Participation Layer
 
